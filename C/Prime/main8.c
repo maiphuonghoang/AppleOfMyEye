@@ -18,17 +18,33 @@ void sieve() {
 			for(int j = i*i; j<=1000000; j+=i )
 				prime[j] = 0;
 }
+int digitPrimeAndSumPrime(int n){
+	int sum = 0;
+	while(n){
+		int r = n%10;
+		if(r!=2&& r!=3 && r!=5 && r!=7)
+			return 0;
+		n/=10;
+		sum += r;
+	}
+	return prime[sum];
+	
+}
+
+
 int main(int argc, char *argv[]) {
 	sieve();
-	int n;
-	scanf("%d", &n);
-	int i=0, count = 0;
-	while (count < n) {
-		if(prime[i]) {
-			printf("%d ", i);
-			count++;
+	int t;
+	scanf("%d", &t);
+	while(t--){
+		int a, b;
+		scanf("%d%d", &a, &b);
+		int count = 0;
+		for(int i=a; i<=b ;i++){
+			if(digitPrimeAndSumPrime(i) && prime[i] )
+				++count;
 		}
-		i++;
+		printf("count:%d\n", count);
 	}
 
 
