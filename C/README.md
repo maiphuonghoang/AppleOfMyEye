@@ -8,4 +8,5 @@
 7. Cặp Số Nguyên Tố Có Tổng Bằng N 
 8. Số Thuần Nguyên Tố
 9. Liệt Kê Các Cặp Số Nguyên Tố Cùng Nhau
-10.Liệt Kê Số Có 3 Ước Số | Số T-Prime
+10. Liệt Kê Số Có 3 Ước Số | Số T-Prime
+13. Ước Nguyên Tố Nhỏ Nhất Của 1 Số Sử Dụng Sàng
