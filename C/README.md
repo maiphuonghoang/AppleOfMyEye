@@ -10,3 +10,10 @@
 9. Liệt Kê Các Cặp Số Nguyên Tố Cùng Nhau
 10. Liệt Kê Số Có 3 Ước Số | Số T-Prime
 13. Ước Nguyên Tố Nhỏ Nhất Của 1 Số Sử Dụng Sàng
+15. Phân Tích Thừa Số Nguyên Tố Kết Hợp Sàng Số Nguyên Tố
+16. Bậc Của Số Nguyên Tố Trong N Giai Thừa | Công Thức Legendre
+18. Đếm Số 0 Tận Cùng Của N Giai Thừa
+19. Số Sphenic
+20. Số Smith 
+21. Tìm Ước Nguyên Tố Lớn Nhất Của 1 Số
+22. Bình phương nguyên tố 
