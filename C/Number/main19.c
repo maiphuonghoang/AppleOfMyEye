@@ -5,20 +5,24 @@
 
 int sphenic(int n)
 {
-    int count = 0;
+    int res = 0;
     for (int i = 2; i <= sqrt(n); i++)
     {
-        while (n%i==0)
+        int count = 0;
+        while (n % i == 0)
         {
             count++;
             n /= i;
         }
-        if(count > 2) return 0;
+        if (count >= 2)
+            return 0;
+        if (count == 1)
+            res++;
     }
-    if(n!=1)
-        count++;
-    return count == 3;
-} 
+    if (n != 1)
+        res++;
+    return res == 3;
+}
 int main()
 {
     int t;
@@ -27,6 +31,6 @@ int main()
     {
         int n;
         scanf("%d", &n);
-        printf(sphenic(n)?"YES":"NO");
+        printf(sphenic(n) ? "YES" : "NO");
     }
 }

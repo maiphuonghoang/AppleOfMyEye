@@ -17,3 +17,6 @@
 20. Số Smith 
 21. Tìm Ước Nguyên Tố Lớn Nhất Của 1 Số
 22. Bình phương nguyên tố 
+    Số thuận nghịch | Số Đối Xứng
+23. Số Chính Phương | Liệt Kê Số Chính Phương Trong Đoạn
+25. Tính Tổng Ước Của Số Nguyên | Đếm Ước Của Số Nguyên
