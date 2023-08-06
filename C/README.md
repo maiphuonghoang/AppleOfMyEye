@@ -20,3 +20,11 @@
     Số thuận nghịch | Số Đối Xứng
 23. Số Chính Phương | Liệt Kê Số Chính Phương Trong Đoạn
 25. Tính Tổng Ước Của Số Nguyên | Đếm Ước Của Số Nguyên
+26. Kiểm Tra Số Có Số Lượng Ước Là Số Lẻ
+27. Số Hoàn Hảo
+30. Số Fibonacci | Kiểm Tra Số Fibonacci
+31. Số Nguyên Tố Có Tổng Các Chữ Số Là Số Fibonacci
+32. Số Thuận Nghịch Có Ít Nhất 3 Ước Nguyên Tố
+33. Số Strong
+34. Số Lộc Phát | Số Thuận Nghịch Lộc Phát
+35. Số ArmStrong
