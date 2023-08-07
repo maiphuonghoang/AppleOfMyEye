@@ -32,4 +32,9 @@
 37.  Phi Hàm Euler | Kiểm Tra 2 Số Nguyên Tố Cùng Nhau
 38. Thừa Số Nguyên Tố Thứ K | Tần Suất Xuất Hiện Của Các Chữ Số
 39. Liệt kê Tần Suất Xuất Hiện Của Các Chữ Số Nguyên Tố trong 1 số 
-
+40. Số Nguyên Dương Nhỏ Nhất Có N Chữ Số Chia Hết Cho Cả X, Y, Z.
+41. Ước Chung Lớn Nhất | Bội Chung Nhỏ Nhất '
+43. Phi Hàm Euler Sử Dụng Sàng Số Nguyên Tố Biến Đổi
+44. Lũy Thừa Nhị Phân | Thuật Toán Tính Lũy Thừa Trong O(LogN)
+45. Đếm Ước Của N Giai Thừa
+46. LCM SUM SPOJ
