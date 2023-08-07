@@ -28,3 +28,8 @@
 33. Số Strong
 34. Số Lộc Phát | Số Thuận Nghịch Lộc Phát
 35. Số ArmStrong
+36. Số nguyên tố có chữ số cuối cùng lớn nhất 
+37.  Phi Hàm Euler | Kiểm Tra 2 Số Nguyên Tố Cùng Nhau
+38. Thừa Số Nguyên Tố Thứ K | Tần Suất Xuất Hiện Của Các Chữ Số
+39. Liệt kê Tần Suất Xuất Hiện Của Các Chữ Số Nguyên Tố trong 1 số 
+
