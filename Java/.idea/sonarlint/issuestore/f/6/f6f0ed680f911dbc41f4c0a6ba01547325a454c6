@@ -1,0 +1,12 @@
+
+v
+java:S2293	"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÍÏÒ“8Ñ•Å–1
+
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Å±ÔÅ8Ò•Å–1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“õïàúÿÿÿÿ8Ò•Å–1
+7
+java:S1220""Move this file to a named package.8Ò•Å–1
+W	java:S125"<This block of commented-out lines of code should be removed.(À®L8ë•Å–1
+T	java:S106"9Replace this use of System.out or System.err by a logger.(°ıñT8î•Å–1
+D
+java:S1125"'Remove the unnecessary boolean literal.(ªÖ8ï•Å–1
