@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+#include <algorithm>
 using namespace std;
 using ll = long long;
 /** MẢNG CỘNG DỒN 1 CHIỀU 
@@ -88,20 +88,42 @@ void run2U(){
         cout << res << endl; 
     }
 }
-
+//----------------------------------------------------------------
+/**
+4 
+2 1 0 4 => 1
+4 
+4 4 4 4 => 10
+*/
 void test3(){
     int n; cin >> n ;
     int a[n];
     for (int &x : a) cin >> x;
 
+    //sau mỗi lần giảm phần tử kế tiếp đến cuối 1 đơn vị 
+    int d[n+2];
+    d[0] = a[0];
+    for (int i=1; i < n; i++) 
+        d[i] = a[i] - a[i-1];
+    
+    for (int i=1; i < n; i++) 
+        d[i] -= 1;
+    int f[n];
+    f[0] = d[0];
+    for(int i=1; i<n; i++)
+        f[i] = f[i-1] + d[i];
+    //d: 4 -1 -1 -1
+    //a: 4  3  2  1 
+    for (int i=0; i < n; i++) cout << f[i] << ' '; 
+
+    //làm thông thường 
     int sum = 0;
     for (int i = 0; i < n; i++){
         sum += a[i];
         for (int j = i+1; j < n; j++)
-            a[j]--;
-        
+            a[j]--;        
     } 
-    cout << sum << endl;
+    cout <<"sum = "<< sum << endl;
 }
 //----------------------------------------------------------------
 /* MẢNG HIỆU 
@@ -135,6 +157,94 @@ void run3(){
     for (int i=0; i < n; i++) cout << f[i] << ' '; 
 
 }
+//----------------------------------------------------------------
+/* Truy vấn tổng trên đoạn, tính tổng các phần tử từ l tới r 
+Được phép thay đổi thứ tự các phần tử trong mảng trước khi truy vấn
+để tổng các truy vấn trên đoạn đạt được giá trị lớn nhất  
+6 2
+5 2 5 3 5 1
+2 5 
+2 4  
+=> 
+(0 2 2 2 1 0 
+2 2 2 1 0 0 
+5 5 5 3 2 1 )
+33
+
+//Xác định những chỉ số được truy vấn nhiều 
+// mảng hiệu tính số lần truy vấn mỗi vị trí, sort giảm dần 
+// sort giảm dần mảng ban đầu để ghép với mảng hiệu
+// nhân số lượng truy vấn với phần tử đấy  
+
+*/
+int run4(){
+    int n, q; cin >> n >> q;
+    int a[n];
+    for (int &x : a) cin >> x;
+    //mảng hiệu ban đầu có tất cả phần tử = 0
+    int d[n+5] = {0};
+    while (q--){
+        int l, r; cin >> l >> r;
+        //tăng các phần tử ở chỉ số left-right lên 1 
+        --l; --r; //bắt đầu từ 0 
+        d[l] += 1;
+        d[r+1] -= 1; 
+    }
+    int f[n];
+    f[0] = d[0];
+    for(int i=1; i<n; i++)
+        f[i] = f[i-1] + d[i];
+    for (int x : f) cout << x << " "; cout << endl;
+
+    sort (f, f+n, greater<int>());
+    sort (a, a+n, greater<int>());
+
+    ll res = 0;
+    for(int i=0; i<n; i++)
+        res += 1ll* a[i] * f[i];
+    for (int x : f) cout << x << " "; cout << endl;
+    for (int x : a) cout << x << " "; cout << endl;
+    cout << res << endl;
+}
+//----------------------------------------------------------------
+/** HÀM SORT TRONG STL 
+*/
+//comparision function 
+bool cmp(int a, int b){
+    if(abs(a)<abs(b)) //sắp xếp theo trị tuyệt đối 
+    if(sum(a)<sum(b)) //sắp xếp theo tổng các chữ số 
+    return true;
+    else return false;
+} 
+bool cmp2(int a, int b){
+    //sắp xếp theo tổng các chữ số tăng dần, nếu same thì số nhỏ hơn xếp trước 
+    if(sum(a)!=sum(b))
+        return sum(a) < sum(b);
+    else return a < b;
+} 
+int sum(int n){
+    int res = 0;
+    while(n){
+        res += n%10; n /= 10;
+    }
+    return res;
+}
+//stable trong sắp xếp: bảo toàn thứ tự tương đối giữa các phần tử 
+int sortArray(){
+    int n, q; cin >> n >> q;
+    int a[n];
+    for (int &x : a) cin >> x;
+
+    sort(a, a+n);//tăng dần 
+    sort(a, a+n, greater<int>());//giảm dần 
+
+    vector<int> v(n);
+    for (int i=0; i<n; i++) cin >> v[i];
+    sort(v.begin(), v.end());
+    for (int x: v) cout<< x << " ";
+
+
+}
 int main (){
     #ifndef ONLINE_JUDGE 
     freopen ("input.txt", "r", stdin);
@@ -142,7 +252,7 @@ int main (){
     #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    run3();
+    run4();
     cout.flush();
     fclose(stdout);
    

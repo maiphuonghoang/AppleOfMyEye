@@ -19,9 +19,15 @@ d[i] = a[i] - a[i-1]\
 A : 3  8  2 4 9  5  1 \
 D : 3 -5 -6 2 5 -4 -4 \
 Mảng cộng dồn của mảng hiệu là mảng A ban đầu\
-P : 3  8  2 4 9  5  1 \
+P : 3  8  2 4 9  5  1\
 
 Cập nhật mảng D
 d[l] += k;
 d[r+1] -= k;
+
+### Comparision function
+- Trả về true nếu muốn a đứng trước b sau khi sắp xếp
+- Trả về false nếu muốn a đứng sau b sau khi sắp xếp
+- stable trong sắp xếp: bảo toàn thứ tự tương đối giữa các phần tử 
+
    
