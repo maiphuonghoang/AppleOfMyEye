@@ -1,6 +1,3 @@
-### Mảng đánh dấu
-Chỉ dùng mảng đánh dấu khi dữ liệu không âm và <= 10^7
-Áp dụng cho: Đánh dấu sự xuất hiện, đếm giá trị khác nhau, đếm tần xuất xuất hiện 
 ### Mảng cộng dồn 
 Cho mảng số nguyên A gồm N phần tử, có Q truy vấn, mỗi truy vấn là 2 số L, R 
 Hãy tính tổng các số từ chỉ số L tới R của mảng \
