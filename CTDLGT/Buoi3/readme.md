@@ -33,8 +33,18 @@ Cho 2 mảng a và b có n và m phần tử đã được sắp xếp theo th�
 5. Number of equal 
 Cho 2 mảng a và b có n và m phần tử đã được sắp xếp theo thứ tự tăng dần. Hãy đếm xem trong 2 mảng tồn tại bao nhiêu cặp i,j sao cho a[i] = b[j]
 - Tần xuất xuất hiện trong mảng a * tần xuất trong mảng b 
-6. Phát quà noel 
+6. Two Sum
+Cho mảng a gồm n phần tử và số nguyên k. Hãy kiểm tra xem trong mảng có a[i] + a[j] = k không?
+7. Three Sum
+a[i] + a[j] + a[k] = s 
+8. Phát quà noel 1
 Có N món quà được xếp thành hàng ngang, mỗi món quà đều có khối lượng cho trước. Tèo là một đứa trẻ cũng như nhiều đứa trẻ khác chỉ muốn có càng nhiều phần quà càng tốt, không cần biết tới khối lượng của từng món quà nặng nhẹ ra sao. Tuy nhiên, chiếc túi của Tèo chỉ có thể chứa được trọng lượng tối đa là S. Bạn hãy xác định xem số lượng phần quà mà Tèo có thể chọn tối đa là bao nhiêu để có thể không vượt quá trọng lượng tối đa mà chiếc túi có thể chịu đựng. Ngoài ra, trong lúc chọn quà, Tèo chỉ có thể chọn các phần quà xếp cạnh nhau mà thôi.
 - Dòng đầu tiên là n và s
 - Dòng 2 là trọng lượng của n phần quà 
-- => Tìm dãy con dài nhất có tổng <= S 
+- => Tìm dãy con liên tiếp dài nhất có tổng <= S 
+9. Phát quà noel 2
+Có N món quà được xếp thành hàng ngang, mỗi món quà đều có khối lượng cho trước. Tí là một đứa trẻ không như nhiều đứa trẻ khác, Tí chỉ muốn chỉ muốn chọn ít phần quà càng tốt, miễn là tổng các phần quà này >= S. Tí chỉ có thể chọn các phần quà xếp cạnh nhau. Hãy xác định xem Tí có thể chọn tối thiểu bao nhiêu phần quà để tổng khối lượng các phần quà >= S.
+- =>  Tìm dãy con liên tiếp ngắn nhất có tổng >= S
+10. Cho một xâu kí tự S chỉ gồm kí tự 2 và kí tự 8. Hãy tìm xâu con liên tiếp có độ dài lớn nhất mà trong đó chứa nhiều nhất X kí tự 2 và Y kí tự 8.
+
+

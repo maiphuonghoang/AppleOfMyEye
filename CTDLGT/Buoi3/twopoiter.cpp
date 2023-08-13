@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std;
 
-/**
+/**Trộn 2 mảng đã sắp xếp thành 1 mảng và sắp xếp theo thứ tự tăng dần 
 6 6
 1 2 4 4 9 10
 4 4 5 6 6 8 
@@ -35,7 +35,7 @@ void tron2Day(){//O(n+m)
     }
 }
 //----------------------------------------------------------------
-/*
+/* Đối với mỗi phần tử trong mảng b, hãy đếm xem trong mảng a có bao nhiêu phần tử nhỏ hơn nó
 7 6
 1 2 3 4 8 9 17
 3 3 8 9 11
@@ -64,7 +64,7 @@ void smaller(){//O(n+m)
     }
 }
 //----------------------------------------------------------------
-/**
+/* Đếm xem trong 2 mảng tồn tại bao nhiêu cặp i,j sao cho a[i] = b[j]
 8 10
 1 1 2 2 2 3 4 8 
 1 1 1 2 2 3 3 4 8 9
@@ -99,7 +99,72 @@ void numberOfEqual(){
     } 
     cout << ans << endl;   
 }
+//----------------------------------------------------------------
+/* a[i] + a[j] = k 
+7 11 
+1 3 4 8 9 14 23 
+*/
+int twoSum(){
+    int n, k; cin >> n >> k;
+    int a[n]; for (int &x : a) cin >> x;
+    sort(a, a + n);
 
+    int l = 0, r = n-1;
+    while (l < r){
+        if(a[l] + a[r] == k)
+            return 1;
+        else if(a[l] + a[r] > k)
+            r--;
+        else l++;
+    }
+    return 0;
+}
+//----------------------------------------------------------------
+/* a[i] + a[j] + a[k] = s 
+Cố định i, xét xem có cặp a[j] + a[k] = s - a[i] không   
+*/
+int threeSum(){
+    int n, s; cin >> n >> s;
+    int a[n]; for (int &x : a) cin >> x;
+    sort(a, a + n);
+
+    for (int i = 0; i < n - 2 ; i++){
+        int l = i + 1, r = n - 1;
+        int k = s - a[i];
+        while (l < r){
+            if(a[l] + a[r] == k)
+                return 1;
+            else if(a[l] + a[r] > k)
+                r--;
+            else l++;
+        }
+    }
+    return 0;
+}
+//----------------------------------------------------------------
+/* a[i] + a[j] + a[k] + a[l] = s 
+Cố định a[i], a[j]   
+*/
+int fourSum(){
+    int n, s; cin >> n >> s;
+    int a[n]; for (int &x : a) cin >> x;
+    sort(a, a + n);
+
+    for (int i = 0; i < n - 1 ; i++)
+        for (int j = i + 1; j < n; j++){
+            int l = j + 1, r = n - 1;
+            int k = s - a[i] - a[j];
+            while (l < r){
+                if(a[l] + a[r] == k)
+                    return 1;
+                else if(a[l] + a[r] > k)
+                    r--;
+                else l++;
+            }
+        }
+    
+    return 0;
+}
 int main (){
     #ifndef ONLINE_JUDGE 
     freopen ("input.txt", "r", stdin);
