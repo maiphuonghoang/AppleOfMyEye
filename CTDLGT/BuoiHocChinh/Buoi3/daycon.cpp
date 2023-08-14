@@ -213,12 +213,12 @@ void xau28(){
 }
 int main (){
     #ifndef ONLINE_JUDGE 
-    freopen ("input.txt", "r", stdin);
-    freopen ("output.txt", "w", stdout);
+    freopen ("D:\\AppleOfMyEye\\CTDLGT/input.txt", "r", stdin);
+    freopen ("D:\\AppleOfMyEye\\CTDLGT/output.txt", "w", stdout);
     #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    xau28();
+    segCountKAbs();
     cout.flush();
     fclose(stdout);
 }
