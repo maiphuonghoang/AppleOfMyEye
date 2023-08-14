@@ -91,6 +91,60 @@ void footballOpposingTeam2(){
         cout << endl;
     }
 }
+//----------------------------------------------------------------
+/**
+Tín chỉ & điểm 
+Lan 4 8
+Hanh 4 5
+Lan 6 10
+Phong 4 10
+Nam 4 9
+Phong 6 5
+Lan 2 4
+Phuong 6 1
+Nhung 2 7
+Nhung 6 9
+Nhung 4 10
+Lan 3 1
+=>
+Phuong : 1.00
+Phong : 7.00
+Nhung : 9.00
+Nam : 9.00
+Lan : 6.87
+Hanh : 5.00
+*/
+double gpa(vector<pair<int, int>> v){
+    int sum1 = 0, sum2 = 0;
+    for (auto it : v){
+        sum1 += it.first * it.second;
+        sum2 += it.first;
+    }
+    return (double)sum1/sum2;
+}
+
+void diemTrungBinh(){
+    map<string, vector<pair<int, int>>> mp;
+    string ten;
+    while(cin >> ten){
+        int stc, diem;
+        cin >> stc >> diem;
+        mp[ten].push_back({stc, diem});
+    }
+    //Lan {(4,8), (6,10), (2,4), (3,1)} 
+    //map có second là vector các pair 
+    //print thong tin cua Lan 
+    for (pair<int, int> it : mp["Lan"]){
+        cout << it.first << " "<< it.second << endl; 
+    }
+    //duyệt ngược theo thứ tự tên 
+    for (auto it = mp.rbegin(); it != mp.rend(); it++){
+        cout << (*it).first << " : ";
+        cout << fixed << setprecision(2)<< gpa((*it).second) << endl;
+    }
+}
+//----------------------------------------------------------------
+
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
