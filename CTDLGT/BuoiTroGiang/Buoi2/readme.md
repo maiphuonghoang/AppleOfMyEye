@@ -22,6 +22,5 @@ Tất cả các thành phố trong Lineland đều nằm trên trục tọa đ�
     + vector hop:  dA[val] || dB[val] //chỉ thuộc 1 trong 2        
 - Two pointer (cả số âm)
     + Sử dụng khi logic và bắt buộc chỉ đưa ra 1 quyết định duy nhất trong 1 trạng thái  
-    + Hợp & giao: tăng i lên 
-
+    + Hợp & giao: tăng i lên, chỉ cho thằng bé hơn vào; bằng nhau thì đưa vào cả hợp và giao rồi tăng cả i và j lên 
 

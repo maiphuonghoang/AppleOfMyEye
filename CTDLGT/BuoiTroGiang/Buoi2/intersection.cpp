@@ -256,23 +256,64 @@ void tanXuat(){
         }         
 }
 //----------------------------------------------------------------
-/** In ra các số nguyên tố trong dãy theo thứ tự tăng dần kèm theo tần xuất của nó 
-Dùng map => thứ tự tăng dần 
-thứ tự xuất hiện (vector) + chỉ lưu lần đầu xh 
+/** Đếm tần xuất xuất hiện của các số nguyên tố trong dãy 
+ * và in ra theo thứ tự xuất hiện trong dãy  
+7
 2 3 5 3 2 5 1
 =>
 2 2 
 3 2 
 5 2
 */
+int prime(int n){
+    for (int i = 2; i <= sqrt(n); i++)
+        if( n%i == 0 ) return 0;
+    return n>1;
+}
+int p[1000005];
 void tanXuatPrime(){
-    int n;
-    vector <int> v;
+    int n; cin >> n;
+    int a[n];
+    //C1: chỉ áp dụng cho n = 1e7
+    for (int &x : a) {
+        cin >> x;
+        if(prime(x))
+            p[x]++;
+    }
+    for (int i=0; i< n; i++)
+        if(p[a[i]]){
+            cout<< a[i] << " "<< p[a[i]] << endl;          
+            p[a[i]] = 0;
+        }
+    //C2: n = 1e9
+    //dùng map (thứ tự tăng dần)
+    //thứ tự xuất hiện (vector)
+    //vector chỉ lưu lần đầu xh (map = 1)
+
+    /*2 3 5 3 2 5 1
+    vector {2, 3, 5}
+    mp[2] = 1 
+    mp[3] = 2
+    mp[5] = 1
+    */
+    n = 7;
+    map<int, int> mp;
+    vector<int> v;
+    while (cin >> n){
+        if(prime(n)){
+            mp[n]++;
+            if(mp[n] == 1)
+                v.push_back(n);
+        }
+    }
+    for (int x:v)
+        cout << x << " " << mp[x] << endl;
+
 }
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    giaoHopMang2Pointer();
+    tanXuatPrime();
     return 0;
 }
