@@ -87,11 +87,120 @@ void thuTuSort(){
     for (int x: a) cout << x << ' ';
 }
 //----------------------------------------------------------------
+/**
+4
+6 -3 0 4
+=> 2 1
+*/
+void brt(){
+    int n; cin >> n;
+    int a[n];
+    for (int &x : a) cin >> x;  
+
+    sort (a, a + n);
+    int min_val = 1e9, cnt = 0;
+    for (int i = 1; i < n; i++) {
+        int kc = a[i] - a[i - 1];
+        if(kc < min_val){
+            min_val = kc;
+            cnt = 1;
+        }
+        else if(kc == min_val)
+            cnt++;       
+    }
+    cout << min_val << ' '<< cnt << endl;
+}
+//----------------------------------------------------------------
+/** Tính tổng từ l đến r
+5
+1 2 3 4 5 
+1
+1 3 
+1 nghìn truy vấn từ left đến right => mảng cộng dồn
+F[i] = F[i-1] + a[i]
+F[L-R] = F[R] - F[L-1] 
+*/
+void tongLR(){
+    int n; cin >> n;
+    int a[n+1];
+    long long F[n+1] = {0};//F[0] = 0
+    for (int i = 1; i <= n; i++){
+        cin >> a[i];
+        F[i] = F[i-1] + a[i];
+    }
+    int q; cin >> q;
+    while (q--){
+        int l, r;
+        cin >> l >> r;
+        cout << F[r] - F[l - 1] << endl;
+    }
+}
+//----------------------------------------------------------------
+/** Số cặp bằng nhau 
+6 
+2 2 1 3 2 3 
+=> 4 
+8
+2 2 4 4 3 4 3 4
+2 - 2
+4 - 4
+3 - 2
+2C2 + 2C4 + 2C2 
+2Cn = n(n-1)/2 
+*/
+int d[1000005] = {0};
+void capBangNhau(){
+    int n; cin >> n;
+    int a[n];
+    for (int &x : a) {
+        cin >> x;
+        d[x]++;
+    }    
+    long long cnt = 0;
+    for (int val = 0; val <= 1e6; val++)
+        cnt += 1ll* d[val]*(d[val]-1)/2;
+    cout << cnt << endl;
+}
+//----------------------------------------------------------------
+/**
+2 2 3 5 8 10 20 88
+=> Yes
+*/
+void dayUuThe(){
+    int cnt_chan = 0, cnt_le = 0;
+    int n;
+    while (cin >> n){
+        if(n%2 == 0) cnt_chan++;
+        else cnt_le++;
+    }
+    int cnt = cnt_chan + cnt_le;
+    if(cnt % 2 == 0 && cnt_chan > cnt_le) cout << "YES";
+    else if(cnt %2 == 1 && cnt_le > cnt_chan) cout << "YES";
+    else cout << "NO"; 
+}
+//----------------------------------------------------------------
+/** Tìm phần tử lặp đầu tiên trong mảng 
+5
+1 4 4 2 2 3 1
+=> 2
+*/
+int dl[100];
+void firstLap(){
+    int n; cin >> n;
+    int a[n];
+    for (int &x : a) {
+        cin >> x;
+        dl[x]++;
+        if(dl[x] == 2){
+            cout << x ;
+            break;
+        }
+    }    
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    thuTuSort();
-    lietKeVaDem();
+    firstLap();
     return 0;
 }
