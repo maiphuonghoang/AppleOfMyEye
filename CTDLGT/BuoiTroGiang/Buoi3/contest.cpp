@@ -197,10 +197,94 @@ void firstLap(){
         }
     }    
 }
+//----------------------------------------------------------------
+/**
+ * Hãy trộn 2 dãy với nhau sao cho dãy a được đưa vào vị trí có chỉ số chẵn,
+ * dãy B được đưa vào các vị trí có chỉ số lẻ. Đồng thời dãy a được sắp xếp 
+ * tăng dần, dãy b giảm dần
+4
+4 2 7 1
+5 6 2 8  
+=> 1 8 2 6 4 5 7 2
+*/
+void tronChanLeSapXep(){
+    int n; cin >> n;
+    int a[n], b[n];
+    for (int &x : a) cin >> x;
+    for (int &x : b) cin >> x;
+    sort(a, a+n);
+    sort(b, b+n, greater<int>());
+    //cách chậm 
+    int t = 0;
+    int i = 0, j = 0;
+    while (t<2*n) {
+        if(t%2 == 0){
+             cout << a[i] << " ";
+             i++;
+        }
+        else {
+            cout << b[j] << " ";
+            j++;
+        }
+        t++;
+    } 
+    //cách nhanh 
+    for (int i = 0; i < n; i++){
+        cout << a[i] << " " << b[i] << " ";
+    }
+}
+//----------------------------------------------------------------
+/**
+ * Cho dãy a gồm n phần tử, các ptu chỉ là 0,1,2. 
+ * Hãy sắp xếp các ptu thoe thứ tự tăng dần 
+5
+1 1 0 2 1 
+=> 0 1 1 1 2
+couting sort O(n)
+*/
+void sort012(){
+    int n; cin >> n;
+    int a[n];
+    int dC[3] = {0};
+    for (int &x : a) {
+        cin >> x;
+        dC[x]++;
+    }
+    for (int i = 0; i <= 2; i++) {
+        while (dC[i]){
+            cout << i << " ";
+            dC[i]--;
+        }
+    }
+}
+//----------------------------------------------------------------
+/** Số thao tác giúp mảng tăng dần
+5
+3 2 7 8 1
+=> 10
+3 4 7 8 9 (2+8)
+*/
+void thaoTacTangDan(){
+    int n; cin >> n;
+    int a[n];
+    for (int &x : a) cin >> x;
+    long long cnt = 0;
+    for (int i = 1; i < n; i++){
+        if(a[i] <= a[i-1]){
+            //tương lai a[i] = a[i-1]+1
+            //kc = a[i] mới - a[i] cũ 
+            int kc = a[i-1]+1 - a[i];
+            //cập nhật a[i] mới 
+            a[i] = a[i-1] + 1;
+            cnt += kc;
+        }
+    }
+    cout << cnt << endl;
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    firstLap();
+    thaoTacTangDan();
     return 0;
 }
