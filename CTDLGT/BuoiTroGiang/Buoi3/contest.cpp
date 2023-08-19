@@ -258,13 +258,13 @@ void sort012(){
     }
 }
 //----------------------------------------------------------------
-/** Số thao tác giúp mảng tăng dần
+/** Số đơn vị tối thiểu giúp mảng tăng chặt 
 5
 3 2 7 8 1
 => 10
 3 4 7 8 9 (2+8)
 */
-void thaoTacTangDan(){
+void donViTangDan(){
     int n; cin >> n;
     int a[n];
     for (int &x : a) cin >> x;
@@ -281,10 +281,145 @@ void thaoTacTangDan(){
     }
     cout << cnt << endl;
 }
+/** Số thao tác tối thiểu giúp mảng tăng chặt 
+3 3
+15 17 9
+=> 3
+3 3
+15 17 8
+=> 4
+*/
+void thaoTacTangDan(){
+    int n, d; cin >> n >> d;
+    int a[n], cnt = 0;
+    for (int &x : a) cin >> x;
+    //C1: 
+    /*
+    for (int i = 1; i < n; i++){
+        if(a[i] <= a[i-1]){
+            while (a[i] <= a[i - 1]){
+                a[i] += d;
+                cnt++;
+            }
+        }
+    }
+    cout << cnt << endl;
+    */
+    //C2: ít nhất phải là 18 => 18-8=10; 10/3=3.3
+    long long res = 0;
+    for (int i = 1; i < n; i++){
+        if(a[i] <= a[i-1]){
+            int hieu = a[i-1] + 1 - a[i];
+            int buoc = (hieu+d-1)/d;
+            res += buoc;
+            //cập nhật a[i] mới 
+            a[i] = buoc*d + a[i];
+            cout << a[i] << endl;
+        }
+    }
+    cout << res << endl;
+
+}
+//----------------------------------------------------------------
+/**
+a0*0 + a1*1 + a2*2 + a3*3 + a4*4
+5
+5 3 2 4 1
+=> 40
+5 3 2 4 1
+0 1 2 3 4
+để tổng max thì thứ tự 
+1 2 3 4 5
+0 1 2 3 4
+(nhỏ đi với nhỏ, to đi với to)
+*/
+void productSum (){
+    int n; cin >> n ;
+    int a[n], cnt = 0;
+    for (int &x : a) cin >> x;
+
+    int sum = 0;
+    int mod = 1e9+7;
+    sort(a, a+n);
+    for (int i=0; i<n; i++) {
+        sum = (sum + (1ll*a[i]*i)%mod)%mod;
+    }
+    cout << sum << endl;
+
+}
+//----------------------------------------------------------------
+/**
+6
+6 8 4 5 2 3
+246 + 358
+=> 604
+2 3 4 5 6 8
+x   x   x 
+*/
+
+void minSum(){
+    int n; cin >> n ;
+    int a[n], cnt = 0;
+    for (int &x : a) cin >> x;
+
+    sort(a, a+n);
+    long long n1 = 0, n2 = 0;
+    for (int i = 0; i < n; i++){
+        if(i%2 == 0) n1 = n1*10+a[i];
+        else n2 = n2*10+a[i];
+    }
+    cout << n1 + n2;
+}
+//----------------------------------------------------------------
+/**
+ * Chia mảng a thành 2 mảng con có kích cỡ k và n-k sao cho hiệu giữa
+ * tổng 2 mảng con là lớn nhất 
+5 2
+8 4 5 2 10
+=> 17 
+2 4 5 8 10
+{8+5+10} - {4,2} = 23-6 = 17
+hay bị lừa 
+5 3
+8 4 5 2 10
+=> 17 
+k = min(k, n-k) = min (2, 5-2) = 2;
+*/
+void chiaMang(){
+    int n, k; cin >> n >> k;
+    int a[n];
+    for (int &x : a) cin >> x;
+    k = min(k, n-k);
+    sort (a, a + n);
+    long long sum1 = 0, sum2 = 0;
+    for (int i = 0; i <n; i++) 
+        if(i<k) sum1 += a[i];
+        else sum2 += a[i];
+    cout << sum2 - sum1;
+}
+//----------------------------------------------------------------
+/**
+ * Cho mảng a gồm n ptu. Tìm 2 chỉ số i, j khác nhau sao cho 0<i<j<n
+ * và trị tuyệt đối của tổng 2 ptu a[i] và a[j] đạt giá trị lớn nhất 
+5
+-1 -2 -3 9 -5
+=> chỉ quan tâm 2 thằng đầu và 2 thằng cuối
+-5 -3 -1 3 4
+|-8| và |7|
+*/
+void maxPair(){
+    int n, k; cin >> n >> k;
+    int a[n];
+    for (int &x : a) cin >> x;
+    sort(a, a+n);
+    int res1 = abs(a[0]+ a[1]);
+    int res2 = abs(a[n-1]+ a[n-2]);
+    cout << max(res1, res2) << endl;
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    thaoTacTangDan();
+    maxPair();
     return 0;
 }
