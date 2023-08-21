@@ -416,10 +416,93 @@ void maxPair(){
     int res2 = abs(a[n-1]+ a[n-2]);
     cout << max(res1, res2) << endl;
 }
+//----------------------------------------------------------------
+/**Cặp a[i], a[j] có tổng = k*/
+int twoSum(){
+    int n, k; cin >> n >> k;
+    int a[n];
+    for (int &x : a) cin >> x;
+    sort(a, a+n);
+
+    int l, r;
+    while (l < r){
+        int sum = a[l] + a[r];
+        if(sum == k) return 1;
+        else if(sum < k) l++;
+        else r--;
+    }
+    return 0;
+}
+int threeSum(){
+    int n, k; cin >> n >> k;
+    int a[n];
+    for (int &x : a) cin >> x;
+    sort(a, a+n);
+
+    for (int i = 0; i < n; i++) {
+        int l = i+1, r = n-1;
+        while (l < r){
+            int sum = a[l] + a[r] + a[i];
+            if(sum == k) return 1;
+            else if(sum < k) l++;
+            else r--;
+        }
+    }
+    
+    return 0;
+}
+int fourSum(){
+    int n, k; cin >> n >> k;
+    int a[n];
+    for (int &x : a) cin >> x;
+    sort(a, a+n);
+
+    for (int i = 0; i < n; i++) {
+        if(a[i] > k/4) return 0;
+        for (int j = i+1; j < n; j++) {
+            int l = j+1, r = n-1, s2 = k - a[i]+a[j];
+            while (l < r){
+                int cur_sum2 = a[l] + a[r];
+                if(cur_sum2 == s2) return 1;
+                else if(cur_sum2 < s2) l++;
+                else r--;
+            }
+        }
+    }
+    
+    return 0;
+}
+
+/**
+4
+4 1 2 10
+=> 12 5
+7
+1 2 3 4 5 6 7
+=> 16 12 
+*/
+void SerejaAndDima(){
+    int n; cin >> n;
+    int a[n];
+    for (int &x : a) cin >> x;
+
+    int l = 0, r = n-1, sum1 = 0, sum2 = 0;
+    bool serejaTurn = true;
+    while (l<=r) 
+    {   int maxi = max(a[l], a[r]);
+        if(maxi == a[l]) l++;
+        else r--;
+        if(serejaTurn) {
+            sum1 += maxi;
+        }else sum2 += maxi;
+        serejaTurn = !serejaTurn;
+    }
+    cout << sum1 << " " << sum2 << endl;
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    maxPair();
+    SerejaAndDima();
     return 0;
 }

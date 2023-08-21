@@ -28,6 +28,10 @@ Hãy xác định số thao tác tối thiểu để mảng trở thành một d
 Cho mảng a gồm n phần tử. Tìm giá trị lớn nhất của tổng max = tổng xích ma (0->n-1)Ai*i bằng cách sắp đặt lại các phần tử trong mảng. Chú ý, kết quả của bài toán có thể rất lớn vì vật hãy đưa ra kết quả lấy modulo với 1e9+7
 ### Tổng nhỏ nhất 
 Cho mảng a gồm các số từ 0 đến 9. Tìm tổng nhỏ nhất của 2 số được tạo bởi các số trong mảng a. Chú ý, tất cả các số trong mảng a đều được sử dụng để tạo nên 2 số. Chú ý, nếu bạn tạo thành các số có số 0 đứng đầu thì bạn có thể loại bỏ các số 0 vô nghĩa đó
+### Sereja and Dima
+Sereja and Dima play a game, the rules of the game are very simple. The players have n cards in a row. Each card contains a number, all numbers on the cards are distinct. The players take turns. Sereja moves first. During his turn a player can take one card: either the leftmost card or the rightmost one. The game ends when there is no more cards. The player who has the maximum sum or numbers on his cards at the end of the game wins.
+Sereja and Dima are being greedy. Each of them chooses the card with the larger number during his move.
+Inna is a friend of Sereja and Dima. She knows which strategy the guys are using. so she wants to determine the final score, given the initial state of the game. Help her.
 
 
 
