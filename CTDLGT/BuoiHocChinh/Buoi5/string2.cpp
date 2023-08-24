@@ -381,6 +381,7 @@ void tapTuChung(){
  * Mỗi từ được liệt kê 1 lần theo thứ tự từ điển tăng dần 
 abc abc abcd abcd AB
 abC CD ZAH abd ABcd
+=> ab 
 */
 void tapTuRieng(){
     string s, t, w;
@@ -400,10 +401,55 @@ void tapTuRieng(){
             cout << x << ' ';
     }
 }
+//----------------------------------------------------------------
+/** Cho các từ chỉ bao gồm chữ cái in hoa và in thường, bạn được yêu cầu ghép
+ * các từ này lại với nhau sao cho từ được ghéo lại sau cùng có thứ tự từ điển lớn nhất 
+4
+ab abc abcd aa
+=> abcdabcabaa
+2
+bca bc 
+=> k phải bcbca mà bcabc mới đúng
+cần nối các từ vào 
+*/
+bool cmpNoi(string u, string v){
+    string uv = u + v;
+    string vu = v + u;
+    //mục đích khi nối 2 xâu lại với nhau tạo ra thứ tự từ điển lớn hơn  
+    return uv > vu;
+}
+void ghepXau(){
+    int n; cin >> n;
+    string a[n];
+    for(int i=0; i<n; i++) cin >> a[i];
+    sort(a, a+n);//sort sai 
+    for (string x: a) cout << x <<" ";
+    sort(a, a+n, cmpNoi);//sort đúng 
+    for (string x: a) cout << x <<" ";
+
+}
+//----------------------------------------------------------------
+/** Cho xâu S chỉ bao gồm các kí tự in thường, hãy đếm số lượng xâu con 
+ * (xâu kí tự chứa các chữ cái liên tiếp) mà kí tự đầu và cuối giống nhau 
+abaabczav
+a:4=> 2C4
+đếm tần xuất xh của các kí tự trong xâu rồi tính tổ hợp chập 2
+abcda
+=> 6 (a,b,c,d,a,abcda)
+*/
+void xauGiongDauCuoi(){
+    string s; cin >> s;
+    map<char, int> mp;
+    for(char x : s) mp[x]++;
+    long long ans = s.size();
+    for (auto it : mp)
+        ans += 1ll*it.second*(it.second-1)/2;
+    cout << ans << endl;
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
     #endif
-    tapTuRieng();
+    xauGiongDauCuoi();
     return 0;
 }
