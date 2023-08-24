@@ -1,0 +1,12 @@
+- Bài 1.  Liệt kê các số nguyên tố xuất hiện trong ma trận
+- Bài 2.  Tìm phần tử lớn nhất trong ma trận và liệt kê vị trí
+- Bài 3. Tìm hàng có tổng các phần tử lớn nhất trong ma trận
+- Bài 4. Tìm cột có nhiều số Fibonacci nhất trong ma trận
+- Bài 5. Tổng phần tử thuộc tam giác dưới
+- Bài 6. Thay thế phần tử cua ma trận
+- Bài 8. In biên của ma trận
+- Bài 9. In ma trận hình con rắn
+- Bài 10. In ma trận theo hình xoắn ốc thuận
+- Bài 11. In ma trận theo hình xoắn ốc ngược
+- Bài 12. In ra phần tử thứ K trong phép duyệt xoắn ốc của ma trận
+- Bài 13. Sắp xếp ma trận và đưa ra thứ tự duyệt xoắn ốc

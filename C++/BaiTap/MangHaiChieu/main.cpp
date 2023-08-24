@@ -274,7 +274,7 @@ void snake(){
         cout << endl;
     }
 }
-
+//----------------------------------------------------------------
 /**Ma trận xoắn ốc thuận 
 10-20-30-40
           |  
@@ -284,7 +284,7 @@ void snake(){
  |        |
 32-33-39-50
 */
-void xoanOc(){
+void xoanOcThuan(){
     int n, m; cin >> n >> m;
     int a[500][500];
     for (int i=0; i< n; i++)
@@ -316,10 +316,136 @@ void xoanOc(){
 
     }  
 }
+/**
+4 4
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+=> 10 11 7 6 5 9 13 14 15 16 12 8 4 3 2 1 
+*/
+void xoanOcNguoc(){
+    //xây dựng thuận rồi in ngược lại thuận 
+    int n, m; cin >> n >> m;
+    int a[500][500];
+    for (int i=0; i< n; i++)
+        for (int j=0; j< m; j++)
+            cin >> a[i][j];    
+    
+    int h1=0, h2=n-1, c1=0, c2=m-1;
+    vector <int> v;
+    while(h1<=h2 && c1<=c2){
+        //xây dựng dòng trên cùng 
+        for (int i = c1; i<=c2; i++)
+            v.push_back(a[h1][i]);
+        ++h1;
+        //xây dựng cột bên phải 
+        for (int i = h1; i<=h2; i++)
+            v.push_back(a[i][c2]);
+        --c2;
+        if(h1 <= h2){
+            //xây dựng dòng dưới cùng 
+            for (int i = c2; i>=c1; i--)
+                v.push_back(a[h2][i]);
+            --h2;
+        }
+        if(c1 <= c2){
+            //xây dựng cột bên trái 
+            for (int i = h2; i>=h1; i--)
+                v.push_back(a[i][c1]);
+            ++c1;
+        }
+    }  
+    for (int i = v.size() - 1; i>=0; i--)
+        cout << v[i] << " ";
+}
+/**
+4 4 6
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+=> 12
+*/
+void phanTuKXoanOc(){
+    int n, m, k; cin >> n >> m >> k;
+    int a[500][500];
+    for (int i=0; i< n; i++)
+        for (int j=0; j< m; j++)
+            cin >> a[i][j];    
+    
+    int h1=0, h2=n-1, c1=0, c2=m-1;
+    vector <int> v;
+    while(h1<=h2 && c1<=c2){
+        //xây dựng dòng trên cùng 
+        for (int i = c1; i<=c2; i++)
+            v.push_back(a[h1][i]);
+        ++h1;
+        //xây dựng cột bên phải 
+        for (int i = h1; i<=h2; i++)
+            v.push_back(a[i][c2]);
+        --c2;
+        if(h1 <= h2){
+            //xây dựng dòng dưới cùng 
+            for (int i = c2; i>=c1; i--)
+                v.push_back(a[h2][i]);
+            --h2;
+        }
+        if(c1 <= c2){
+            //xây dựng cột bên trái 
+            for (int i = h2; i>=h1; i--)
+                v.push_back(a[i][c1]);
+            ++c1;
+        }
+    }  
+    cout << v[k-1] << endl;    
+}
+/** Cho ma trận vuông. Sắp đặt các ptu của a sao cho các số 
+ * được điền lần lượt theo kiểu xoắn ốc tăng dần
+3
+3 6 1
+8 7 9
+4 12 5
+=>
+1 3 4 
+9 12 5
+8 7 6
+*/
+void sapXepXoanOc(){
+    int n; cin >> n;
+    int v[n*n];
+    for (int i=0; i< n *n ; i++)
+        cin >> v[i];    
+    sort(v, v+n*n);
+    //gán các ptu của v vào ma trận xoắn ốc a 
+    int a[n][n];
+    int cnt = 0, h1=0, h2=n-1, c1=0, c2=n-1;    
+    while(h1<=h2 && c1<=c2){
+        //xây dựng dòng trên cùng 
+        for (int i = c1; i<=c2; i++)
+            a[h1][i] = v[cnt++];
+        ++h1;
+        //xây dựng cột bên phải 
+        for (int i = h1; i<=h2; i++)
+            a[i][c2] = v[cnt++];
+        --c2;
+        if(h1 <= h2){
+            //xây dựng dòng dưới cùng 
+            for (int i = c2; i>=c1; i--)
+                a[h2][i] = v[cnt++];
+            --h2;
+        }
+        if(c1 <= c2){
+            //xây dựng cột bên trái 
+            for (int i = h2; i>=h1; i--)
+                a[i][c1] = v[cnt++];
+            ++c1;
+        }
+    }  
+    for (int i=0; i< n; i++){
+        for (int j=0; j< n; j++)
+            cout << a[i][j]<<" ";
+        cout << endl;
+    }
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
-    xoanOc();
+    sapXepXoanOc();
     return 0;
 }
