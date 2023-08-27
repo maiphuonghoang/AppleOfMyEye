@@ -151,6 +151,78 @@ void countIsland(){
     cout << cnt << endl;
 }
 //----------------------------------------------------------------
+/** Ma trận a chỉ gồm ký tự O, X. Hãy thay thêd các miền bao quanh O bằng X.
+ * 1 miền các ký tự O bị bao quanh bởi kí tự X nếu các kí tự X xuất hiện ở 
+ * phía dưới, trên, trái, phải các kí tự O
+6 6 
+O O O X X X
+X X X O O O
+X O X O X X
+O X X X X O
+O O O O X X
+X X X X X O
+=> 
+(1,1) (1,2) (1,3)
+(2,6) (2,5) (2,4) (3,4)
+(4,1)
+(5,1) (5,2) (5,3) (5,4)
+(4,6)
+(6,6)
+O O O X X X
+X X X O O O
+X X X O X X
+O X X X X O
+O O O O X X
+X X X X X O
+Duyệt 4 biên, ô O sẽ loang ra tất cả các ô O khác kề với ô này 
+Sau đó ptu nào trên mảng vẫn là O (các ô ở biên k loang tới)
+chứng tỏ đã bị bao quanh bởi X
+Còn những ptu bị ở  biên loang đến k bị bao quanh bởi X
+*/
+char c[100][100];
+pair<int, int> path[4] = {{-1,0}, {0,-1}, {0,1},{1,0}};
+void ff(int i, int j){
+    cout << "(" << i << "," << j << ") " << endl;
+    c[i][j] = '*';
+    for (int k = 0; k < 4; k++){
+        int ike = i + path[k].first;
+        int jke = j + path[k].second;
+        if (ike>=1 && ike<=n && jke>=1 && jke<= m && c[ike][jke] == 'O') 
+            ff(ike, jke);
+    }
+}
+void thayTheXO(){
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++) cin >> c[i][j];
+    
+    //duyệt hàng 1 tới hàng n
+    for (int i = 1; i <= n; i++){
+        //các ptu trên cột 1 và cột m là chữ O
+        if(c[i][1] == 'O') ff(i,1);
+        if(c[i][m] == 'O') ff(i,m);
+    }
+    //duyệt cột 1 tới cột m 
+    for (int j = 1; j <= m; j++){
+        //các ptu trên cột 1 và cột m là chữ O
+        if(c[1][j] == 'O') ff(1,j);
+        if(c[n][j] == 'O') ff(n,j);
+    }
+
+    //duyệt cả mảng, khác kí tự * thì đều là X
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= m; j++){
+            if(c[i][j] != '*')
+                cout << "X ";
+            else 
+                cout << "O ";
+        }
+        cout << endl;
+    }
+
+
+}
+//----------------------------------------------------------------
 /**Ma trận a chỉ gồm các số 0 và 1. Tìm cấp của ma trận vuông con lớn nhất 
  * có các phần tử đều = 1
 6 5
@@ -190,10 +262,19 @@ void maxSquare(){
             res = max(res, dp[i][j]);
     cout << res << endl;
 }
+//----------------------------------------------------------------
+/**Ma trận a chỉ gồm các số 0 và 1. Hãy tìm hình chữ nhật lớn nhất 
+ * có các phần tử đều bằng 1 
+0 1 1 0
+1 1 1 1
+1 1 1 1
+1 1 0 0
+=> 8 
+*/
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
-    maxSquare();
+    thayTheXO();
     return 0;
 }
