@@ -18,3 +18,13 @@ Cho ma trận n*m. Tìm tổng đường dẫn lớn nhất trong ma trận. Đ�
 Cho ma trận mxn chỉ bao gồm các số 0 và 1. Hãy sửa đổi các phần tử của ma trận theo nguyên tắc: nếu phần tử a[i][j] = 1, ta thay tất cả các phần tử của hàng i, cột j bởi 1
 - Bài 18. Ma trận nhị phân
 - Bài 19. Phần tử thứ k của ma trận sắp xếp theo hàng và cột
+- Bài 20. Quay ma trận theo chiều kim đồng hồ
+- Bài 21. Đếm số lượng giá trị xuất hiện ở mọi dòng trong ma trận
+- Bài 22. Đếm số miền của ma trận
+- Bài 23. Tìm cấp của ma trận vuông con lớn nhất trong ma trận nhị phần
+- Bài 24. Diện tích hình chữ nhật lớn nhất chỉ bao gồm các số 1 trong ma trận nhị phân
+Kiến thức sử dụng: Stack, Maximum rectangle area in a histogram
+- Bài 25. Hình chữ nhật con có tổng lớn nhất trong ma trận
+Kiến thức sử dụng : Kadane algorithm
+- Bài 26. Thay thế X-O : Thay thế các phần tử 'O' bao quanh bởi các phần tử 'X' trong ma trận bằng 'X'.
+Kiến thức sử dụng : Flood fill algorithm.
