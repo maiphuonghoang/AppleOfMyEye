@@ -220,7 +220,6 @@ void thayTheXO(){
         cout << endl;
     }
 
-
 }
 //----------------------------------------------------------------
 /**Ma trận a chỉ gồm các số 0 và 1. Tìm cấp của ma trận vuông con lớn nhất 
