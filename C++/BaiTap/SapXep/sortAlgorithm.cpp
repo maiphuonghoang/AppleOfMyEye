@@ -69,7 +69,7 @@ void run(){
 }
 int main() {
     #ifndef ONLINE_JUDGE 
-    freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
+    freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
     run();
     return 0;

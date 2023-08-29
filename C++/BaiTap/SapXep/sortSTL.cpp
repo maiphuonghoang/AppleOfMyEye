@@ -105,7 +105,7 @@ void sortOdd(){
 }
 int main() {
     #ifndef ONLINE_JUDGE 
-    freopen ("D:\\AppleOfMyEye\\CTDLGT\\input.txt", "r", stdin);
+    freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
     //O(NlogN) = intro sort: quick sort + heap sort
     //sort(a, a+n); => [0, n-1]
