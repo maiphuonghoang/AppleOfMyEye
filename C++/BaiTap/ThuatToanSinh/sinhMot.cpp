@@ -64,7 +64,7 @@ void runSinhTapCon(){
     }
 }
 //----------------------------------------------------------------
-/**Sinh hoán vị kế tiếp 
+/**Sinh hoán vị kế tiếp các số khác nhau 
 2
 5
 1 2 3 4 5
@@ -74,7 +74,7 @@ void runSinhTapCon(){
 1 2 3 5 4 
 1 2 3 4 5
 */
-void nextHoanVi(){
+void nextHoanViKhacNhau(){
     int i = n - 1;
     while(i>=1 && a[i] > a[i+1])
         i--;
@@ -92,16 +92,42 @@ void nextHoanVi(){
         cout << endl;
     }
 }
+/**
+1
+13
+2 2 7 9 1 3 4 3 9 9 7 4 2
+=>
+2 2 7 9 1 3 4 4 2 3 7 9 9 
+*/
+void nextHoanViGiongNhau(){
+    int i = n - 1;
+    while(i>=1 && a[i] >= a[i+1])
+        i--;
+    if(i==0)
+        for (int i=1; i<=n;i++)
+            cout << i << " ";
+    else{
+        int j = n;
+        while(a[i] >= a[j])
+            j--;
+        swap(a[i], a[j]);
+        reverse(a+i+1, a+n+1);
+        for (int i=1; i<=n; i++)
+            cout << a[i] << " ";
+        cout << endl;
+    }
+}
 void runSinhHoanVi(){
     int t; cin >> t;
     while(t--){
         cin >> n;
         for (int i=1; i<=n; i++)
             cin >> a[i];
-        nextHoanVi();
+        // nextHoanViKhacNhau();
+        nextHoanViGiongNhau();
     }    
 }
-void builtSinhHoanVi(){
+void builtSinhHoanVi(){//áp dụng cả khác và giống nhau 
     int t; cin >> t;
     while(t--){
         cin >> n;
@@ -119,7 +145,7 @@ void builtSinhHoanVi(){
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
-    builtSinhHoanVi();
+    runSinhHoanVi();
     #endif
     return 0;
 }
