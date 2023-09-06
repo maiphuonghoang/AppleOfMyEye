@@ -63,7 +63,7 @@ void runHoanVi(){
     TryHoanVi(1);
 }
 //----------------------------------------------------------------
-/**Xếp N quuân hậu vào N hàng trên bàn cờ N*N sao cho k có 2 quân hậu nào ăn nhau.
+/**Xếp N quân hậu vào N hàng trên bàn cờ N*N sao cho k có 2 quân hậu nào ăn nhau.
  * Xi = j có nghĩa là xếp quân hậu hàng thứ i nằm ở cột j  
 */
 int cot[100], d1[100], d2[100];
@@ -106,10 +106,70 @@ void runNQueen(){
     TryNQueen(1);
     cout << cnt << "cau hinh";
 }
+//----------------------------------------------------------------
+/**Xếp 8 quân hậu vào 8 hàng trên bàn cờ 8*8 sao cho k có 2 quân hậu nào ăn nhau.
+ * Tổng vị trí đặt lớn nhất.
+12 29 80 91 56 46 97 13
+54 88 27 84 85 9 32 77
+48 80 88 74 30 77 38 98 
+6 82 20 95 7 86 12 43
+100 82 15 7 95 9 5 84
+51 40 65 98 86 38 30 63
+96 78 98 76 33 11 2 58 
+33 51 35 68 62 87 67 39 
+=> 653
+Tính tổng 
+a[1][1]
+a[2][5]
+a[3][8]
+a[4][6]
+a[5][3]
+a[6][7]
+a[7][2]
+a[8][4]
+*/
+int ans;
+void inViTriQueenMax(){
+    for (int i = 1; i <= N; i++)
+        cout << "vi tri a[" << i << "][" << X[i] << "] = " << a[i][X[i]]<< endl;
+    cout << endl;
+}
+void TryNQueenMax(int i){
+    for (int j = 1; j <= N; j++){
+        //Chuẩn bị gán X[i] = j
+        if(cot[j] == 0 && d1[i-j+N] == 0 && d2[i+j-1] == 0){
+            X[i] = j;
+            cot[j] = d1[i-j+N] = d2[i+j-1] = 1;
+            if(i == N){
+                int tong = 0;
+                for (int hang = 1; hang <= N; hang++)
+                    tong += a[hang][X[hang]];
+                cout << tong << endl;
+                inViTriQueenMax();
+                ans = max(ans, tong);
+            }
+            else
+                TryNQueenMax(i + 1);
+            //backtrack
+            cot[j] = d1[i-j+N] = d2[i+j-1] = 0;
+        } 
+    }
+}
+void runNQueenMax(){
+    N = 8;
+    ans = 0;
+    for (int i = 1; i <= 99; i++)
+        cot[i] = d1[i] = d2[i] = 0;
+    for (int i = 1; i <= N; i++) 
+        for (int j = 1; j <= N; j++)
+            cin >> a[i][j];
+    TryNQueenMax(1);
+    cout << "Max = " << ans;
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
-    runNQueen();
+    runNQueenMax();
     return 0;
 }

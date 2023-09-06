@@ -46,6 +46,24 @@ Try(int i){
                 Try(i + 1)  
             Backtrack 
             used[j] = 0;
-        }
+        }  
     }  
-} 
+}  
+### Bài toán N quân hậu
+- Hậu ở vị trí Xi=j quản lý hàng i, cột j, đường chéo xuôi i - j + n, đường chéo ngược i + j - 1  
+- Khi xét X[i] = j phải đảm bảo cột[j] trống, đcheo[i-j+n] trống, đcheo[i+j-1] trống  
+Try(int i){  
+    for (j = 1; j <= N; j++){  
+        if(cot[j] == 0 && d1[i-j+n] == 0 && d2[i+j-1] == 0){  
+            Đánh dấu cot[j]=d1[i-j+n]=d2[i+j-1] = 1 đã bị quản lí;   
+            X[i] = j;  
+            if(i == N)  
+                inKq();    
+            else  
+                Try(i + 1)  
+            Backtrack  
+            cot[j]=d1[i-j+n]=d2[i+j-1] = 0;  
+        }  
+    }  
+}  
+
