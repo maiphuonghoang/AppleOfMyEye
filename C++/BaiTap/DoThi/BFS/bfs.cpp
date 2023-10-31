@@ -50,12 +50,57 @@ void bfs(int u){
 
     }
 }
+//-------------------------------------------------------------
+int a[1001][1001];
 
+int n=10;
+void inputMtk(){
+    /*
+0 1 1 0 1 0 0 0 0 1 
+1 0 0 1 0 0 0 0 0 0 
+1 0 0 0 0 1 1 0 1 0 
+0 1 0 0 0 0 0 0 0 0 
+1 0 0 0 0 0 0 1 0 0 
+0 0 1 0 0 0 1 0 0 0 
+0 0 1 0 0 1 0 0 0 0 
+0 0 0 0 1 0 0 0 1 0 
+0 0 1 0 0 0 0 1 0 0 
+1 0 0 0 0 0 0 0 0 0  
+    */
+    for (int i = 1; i<=n; i++)
+        for (int j = 1; j <=n; j++)
+            cin >> a[i][j];
+    memset(visited, false, sizeof(visited));
+}
+
+void bfsMtk(int u){ 
+    queue<int> q;
+    q.push(u);
+    visited[u] = true;
+
+    while (!q.empty())
+    {
+        int v = q.front();
+        q.pop();
+        cout << v << " ";//Thăm v
+        for (int x = 1; x <= n; x++){//danh sách kề của v 
+            if(a[v][x] == 1 && !visited[x]){
+                q.push(x);
+                visited[x] = true;
+            }
+        }
+
+    }
+}
 int main() {
     #ifndef ONLINE_JUDGE 
     freopen ("D:\\AppleOfMyEye\\C++\\input.txt", "r", stdin);
     #endif
+    cout << "\nBFS Danh sach ke" << endl;
     input();
     bfs(3);
+    cout << "\nBFS Ma tran ke" << endl;
+    inputMtk();
+    bfsMtk(3);
     return 0;
 }

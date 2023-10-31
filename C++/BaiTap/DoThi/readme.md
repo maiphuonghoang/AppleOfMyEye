@@ -96,3 +96,13 @@
 ![retrivePath!](img/findPath1.png)
 - 2 đỉnh thuộc cùng 1 thành phần liên thông sẽ luôn có  đường đi  
 - Trên đồ thị không có trọng số (có hướng và vô hướng) thuật toán BFS cho đường đi có số cạnh là ngắn nhất 
+
+#### Áp Dụng Thuật Toán DFS, BFS Trên Lưới Ô Vuông
+![vd!](img/grid1.png)
+- Tư tưởng 
+  - DFS,BFS không còn là 1 đỉnh như trên đồ thị thông thường nữa mà tham số của DFS,BFS là cặp i,j (chỉ số hàng/cột của ô đang xét)
+  - check ô kề vẫn phải nằm trên lưới và có đường đi (chưa được thăm)
+- Di chuyển từ ô i,j sang 4 ô xung quanh chung đỉnh 
+![4o!](img/grid2.png)
+- Di chuyển từ ô i,j sang 8 ô xung quanh
+![8o!](img/grid3.png)
