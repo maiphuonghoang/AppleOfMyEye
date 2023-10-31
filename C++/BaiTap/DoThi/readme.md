@@ -72,12 +72,20 @@
 ### Tool
 - csacademy.com
 
-## Thuật Toán Tìm Kiếm Theo Chiều Sâu | Giải Thuật DFS
+## Thuật toán 
+
+### Thuật Toán Tìm Kiếm Theo Chiều Sâu | Giải Thuật DFS
 - Dùng đệ quy (Stack) 
 ![DFS!](img/dfs1.png)
 ![DFS_vd!](img/dfs3.png)
 ![DFS_edge!](img/dfs2.png)
-## Thuật Toán Tìm Kiếm Theo Chiều Rộng | Giải Thuật BFS
+
+### Thuật Toán Tìm Kiếm Theo Chiều Rộng | Giải Thuật BFS
 - Dùng (Queue)  
 ![BFS!](img/bfs1.png)
 ![BFS_vd!](img/bfs2.png)
+
+### Số Thành Phần Liên Thông
+- Là số lần gọi DFS/BFS sao cho tất cả các đỉnh của đồ thị được thăm 
+- Gọi DFS/BFS để thăm các đỉnh thuộc cùng thành phần liên thông với đỉnh i đấy 
+![ConnectedComponent!](img/connectedComponent.png)
