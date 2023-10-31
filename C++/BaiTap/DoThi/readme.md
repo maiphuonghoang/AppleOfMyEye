@@ -72,6 +72,12 @@
 ### Tool
 - csacademy.com
 
-## Thuật Toán Tìm Kiếm Theo Chiều Sâu Trên Đồ Thị
+## Thuật Toán Tìm Kiếm Theo Chiều Sâu | Giải Thuật DFS
+- Dùng đệ quy (Stack) 
 ![DFS!](img/dfs1.png)
+![DFS_vd!](img/dfs3.png)
 ![DFS_edge!](img/dfs2.png)
+## Thuật Toán Tìm Kiếm Theo Chiều Rộng | Giải Thuật BFS
+- Dùng (Queue)  
+![BFS!](img/bfs1.png)
+![BFS_vd!](img/bfs2.png)
