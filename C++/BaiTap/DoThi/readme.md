@@ -85,7 +85,14 @@
 ![BFS!](img/bfs1.png)
 ![BFS_vd!](img/bfs2.png)
 
-### Số Thành Phần Liên Thông
+### Áp dụng DFS, BFS
+#### Số Thành Phần Liên Thông
 - Là số lần gọi DFS/BFS sao cho tất cả các đỉnh của đồ thị được thăm 
 - Gọi DFS/BFS để thăm các đỉnh thuộc cùng thành phần liên thông với đỉnh i đấy 
 ![ConnectedComponent!](img/connectedComponent.png)
+
+#### Tìm Đường Đi Trên Đồ Thị Không Có Trọng Số.
+- Cần thêm mảng parent để truy vết đường đi, parent khác 0 chứng tỏ có đường đi đến điểm đấy 
+![retrivePath!](img/findPath1.png)
+- 2 đỉnh thuộc cùng 1 thành phần liên thông sẽ luôn có  đường đi  
+- Trên đồ thị không có trọng số (có hướng và vô hướng) thuật toán BFS cho đường đi có số cạnh là ngắn nhất 
