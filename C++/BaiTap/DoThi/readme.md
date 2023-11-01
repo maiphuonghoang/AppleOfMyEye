@@ -106,3 +106,24 @@
 ![4o!](img/grid2.png)
 - Di chuyển từ ô i,j sang 8 ô xung quanh
 ![8o!](img/grid3.png)
+
+### Thuật Toán Sắp Xếp Topo
+- Đưa ra thứ tự duyệt đỉnh sao cho nếu có đường đi từ u->v thì u sẽ xuất hiện trước trong thứ tự duyệt đấy 
+![vd1!](img/topo1.png)
+![vd1!](img/topo2.png)
+- Không áp dụng khi đồ thị có hướng có chu trình 
+![vd1!](img/topo3.png)
+#### Topo DFS
+- Đỉnh được thăm đầu tiên trong DFS là đỉnh cuối cùng trong thứ tự sắp xếp topo, chính là đỉnh không có đường đi tới các đỉnh khác 
+![topo_dfs!](img/topo6.png)
+- Giải thuật: dùng dfs, thêm bước đỉnh nào xong đầu thì đưa vào topo 
+#### Topo BFS | Thuật Toán Kahn | Thuật toán xóa dần đỉnh 
+- Yêu cầu: phải tính được bán bậc vào của các đỉnh trên đồ thị 
+- Giải thuật:
+  - Chọn ra các đỉnh có bán bậc vào là 0 -> đỉnh đầu tiên trong topo, đưa vào queue
+  - Xóa đỉnh khỏi đồ thị (xóa đỉnh ở đầu queue)
+  - Duyệt qua các đỉnh kề của đỉnh ở đầu queue đó. Tất cả đỉnh kề với đỉnh đó sẽ có bán bậc vào giảm 1
+  - Nếu thấy bậc 0 thì lại đưa đỉnh có bậc 0 đó vào queue
+  - Queue rỗng là duyệt xong rồi
+![kahn!](img/topo4.png)
+![kahn!](img/topo5.png)
