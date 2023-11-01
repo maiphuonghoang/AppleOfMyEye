@@ -127,3 +127,12 @@
   - Queue rỗng là duyệt xong rồi
 ![kahn!](img/topo4.png)
 ![kahn!](img/topo5.png)
+
+### Kiểm Tra Chu Trình Trên Đồ Thị Có Hướng và Vô Hướng.
+![chutrinh_dfs!](img/chutrinhdfs1.png)
+
+### Thuật Toán Kosaraju | Thành Phần Liên Thông Mạnh Của Đồ Thị Có Hướng
+- O(2(V+E)) : dùng 2 lần DFS
+![kosaraju!](img/kosaraju1.png)
+![kosaraju!](img/kosaraju2.png)
+![kosaraju!](img/kosaraju3.png)
