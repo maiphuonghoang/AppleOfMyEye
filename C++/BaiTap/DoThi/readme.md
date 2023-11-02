@@ -134,6 +134,18 @@
 - Nếu v đã được thăm rồi mà không là cha trực tiếp của u thì cạnh vu là cạnh ngược
 - Đỉnh v mở rộng ra đỉnh được thăm rồi nhưng không là cha trực tiếp của nó thì đó là cạnh ngược 
 ![chutrinh_bfs!](img/chutrinhbfs1.png)
+#### DFS/Kahn có hướng
+- DFS gồm 3 trạng thái:
+  - 0 = White : chưa được thăm
+  - 1 = Gray : đã được thăm nhưng chưa thăm xong
+  - 2 = Black : thăm xong rồi 
+- Chỉ được coi là cạnh ngược khi trạng thái là xám 
+![chutrinh_dfs!](img/chutrinhdfs2.png)
+- Kahn:
+  - Đủ n đỉnh -> K có chu trình 
+  - K đủ n đỉnh -> có chu trình 
+  - Check được cho cả liên thông và k liên thông (so sánh số đỉnh trong queue và n đỉnh)
+![chutrinh_kahn!](img/chutrinhkahn.png)
 
 ### Thuật Toán Kosaraju | Thành Phần Liên Thông Mạnh Của Đồ Thị Có Hướng
 - O(2(V+E)) : dùng 2 lần DFS
