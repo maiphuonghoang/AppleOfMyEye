@@ -129,7 +129,11 @@
 ![kahn!](img/topo5.png)
 
 ### Kiểm Tra Chu Trình Trên Đồ Thị Có Hướng và Vô Hướng.
+#### DFS/BFS vô hướng
 ![chutrinh_dfs!](img/chutrinhdfs1.png)
+- Nếu v đã được thăm rồi mà không là cha trực tiếp của u thì cạnh vu là cạnh ngược
+- Đỉnh v mở rộng ra đỉnh được thăm rồi nhưng không là cha trực tiếp của nó thì đó là cạnh ngược 
+![chutrinh_bfs!](img/chutrinhbfs1.png)
 
 ### Thuật Toán Kosaraju | Thành Phần Liên Thông Mạnh Của Đồ Thị Có Hướng
 - O(2(V+E)) : dùng 2 lần DFS
