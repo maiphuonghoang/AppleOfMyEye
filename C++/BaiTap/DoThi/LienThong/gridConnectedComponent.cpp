@@ -41,7 +41,7 @@ void bfs(int i, int j){
         for (int k = 0; k < 4; k++){
             int i1 = top.first + dx[k];
             int j1 = top.second + dy[k];
-            if(i1>=1 && i1<=n && j1>=1 && j1<=n && a[i1][j1] == 'x'){
+            if(i1>=1 && i1<=n && j1>=1 && j1<=m && a[i1][j1] == 'x'){
                 cout << i << " " << j << endl;
                 q.push({i1, j1});
                 a[i1][j1] = 'o';
