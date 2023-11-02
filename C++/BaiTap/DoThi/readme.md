@@ -158,3 +158,34 @@
 ![kosaraju!](img/kosaraju1.png)
 ![kosaraju!](img/kosaraju2.png)
 ![kosaraju!](img/kosaraju3.png)
+
+### Cấu Trúc Dữ Liệu Các Tập Hợp Rời Nhau | Disjoint Set Union DSU | Union Find
+- Gồm 3 thao tác
+  1. **make_set(a)**: tạo 1 tập hợp chứa phần tử a 
+  2. **union(a, b)**: gộp 2 tập hợp lại với nhau 
+  3. **find(a)**: tìm ra đại diện tập hợp mà a thuộc
+- **Makeset**
+  - Duyệt tất cả các phần tử riêng biệt, cho parent của i = chính nó 
+- **Find**
+  - Đỉnh nào đó có cha là chính nó thì nó là leader
+  - Thao tác này tìm đại diện cho 1 đỉnh nào đó  
+- **Union**
+  - TH1: a, b đã thuộc cùng 1 tập hợp rồi <=> cùng parent
+  - TH2: a, b đã thuộc 2 tập hợp khác nhau: cho cha của b thành a 
+![dsu!](img/dsu1.png) 
+![dsu!](img/dsu2.png) 
+![dsu!](img/dsu3.png) 
+- Nhược điểm 
+  1. Find: O(n) trong hợp tệ nhất 
+![dsu!](img/dsu4.png) 
+  - Những đỉnh nào trên đường đi đấy gán luôn các đỉnh đấy có chung cha là đại diện của tập hợp đấy luôn => Làm chiều cao của cây ngắn đi 
+![dsu!](img/dsu5.png) 
+![dsu!](img/dsu6.png) 
+![dsu!](img/dsu7.png)
+  2. Union
+![dsu!](img/dsu8.png) 
+  - Cho đại diện của cây có kích thước nhỏ hơn gọi đại diện của cây có kích thước lớn hơn là cha 
+  - Thao tác gán lại sẽ ít hơn => Tìm cha nhanh hơn vì ít phần tử bị thay đổi cha hơn 
+  ![dsu!](img/dsu9.png)
+- **Tối ưu** 
+  ![dsu!](img/dsu10.png)
