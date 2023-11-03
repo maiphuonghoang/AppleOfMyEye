@@ -189,3 +189,15 @@
   ![dsu!](img/dsu9.png)
 - **Tối ưu** 
   ![dsu!](img/dsu10.png)
+
+### Thuật Toán Kruskal tìm Cây Khung Cực Tiểu
+- B1: Khởi tạo cây khung rỗng và chiều dài cây = 0
+- B2: Sắp xếp cạnh theo chiều dài tăng dần 
+- B3: Lặp
+  - Lặp cây khung chưa đủ n-1 cạnh và vẫn còn cạnh để lựa chọn
+  - Chọn cạnh ngắn nhất cho vào cây khung, nếu không tạo thành chu trình thì có thể thêm cạnh vào cây khung được 
+![kruskal!](img/kruskal1.png)
+![kruskal!](img/kruskal2.png)
+  - 2 đỉnh có cha khác nhau sẽ k thuộc cùng 1 tập hợp, k cùng thành phần liên thông, k tạo chu trình
+  - Xét (2,5): 2 và 5 đang nằm trong cây khung rồi, nếu có thêm 1 cạnh nữa giữa 2 đỉnh này thì sẽ tạo thành chu trình  
+
