@@ -190,6 +190,7 @@
 - **Tối ưu** 
   ![dsu!](img/dsu10.png)
 
+## Minimum Spanning Tree 
 ### Thuật Toán Kruskal tìm Cây Khung Cực Tiểu
 - B1: Khởi tạo cây khung rỗng và chiều dài cây = 0
 - B2: Sắp xếp cạnh theo chiều dài tăng dần 
@@ -200,4 +201,6 @@
 ![kruskal!](img/kruskal2.png)
   - 2 đỉnh có cha khác nhau sẽ k thuộc cùng 1 tập hợp, k cùng thành phần liên thông, k tạo chu trình
   - Xét (2,5): 2 và 5 đang nằm trong cây khung rồi, nếu có thêm 1 cạnh nữa giữa 2 đỉnh này thì sẽ tạo thành chu trình  
+
+### Thuật Toán Prim tìm Cây Khung Cực Tiểu
 
