@@ -203,4 +203,12 @@
   - Xét (2,5): 2 và 5 đang nằm trong cây khung rồi, nếu có thêm 1 cạnh nữa giữa 2 đỉnh này thì sẽ tạo thành chu trình  
 
 ### Thuật Toán Prim tìm Cây Khung Cực Tiểu
+![prim!](img/prim1.png)
+
+### Bipartite graph (Đồ thị hai phía)
+- Các đỉnh chia thành 2 tập k giao nhau 
+- Giữa 2 đỉnh bất kì thuộc cùng 1 tập sẽ không có cạnh nối 
+![bipartite!](img/bipartiteGraph.png)
+- Thuật toán dựa trên BFS 
+![bipartite!](img/bipartiteGraph2.png)
 
