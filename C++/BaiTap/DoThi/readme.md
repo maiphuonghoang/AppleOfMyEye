@@ -212,3 +212,16 @@
 - Thuật toán dựa trên BFS 
 ![bipartite!](img/bipartiteGraph2.png)
 
+###  Đỉnh Trụ Và Cạnh Cầu | Khớp Và Cầu
+- Đỉnh trụ: khi loại bỏ 1 đỉnh nào đó (và các cạnh kề với nó) khỏi đồ thị thì sẽ làm tăng số lượng thành phần liên thông của đồ thị 
+- Cạnh cầu: khi loại bỏ cạnh đó khỏi đồ thị thì làm tăng số lượng thành phần liên thông 
+- Cách duyệt trâu:
+  - Ban đầu đếm số lượng tplt của đồ thị 
+  - Loại bỏ 1 đỉnh khỏi đồ thị và đếm lại số lượng tplt
+  - Nếu số lượng tplt tăng lên thì đỉnh vừa loại bỏ là đỉnh trụ  
+=> **Brute force**:
+  - Đỉnh trụ: O(V*(V+E))
+  - Cạnh cầu: O(E*(V+E))
+- Tajan: O(V+E)
+
+
