@@ -224,4 +224,12 @@
   - Cạnh cầu: O(E*(V+E))
 - Tajan: O(V+E)
 
+### Thuật Toán Dijkstra | Thuật Toán Tìm Đường Đi Ngắn Nhất
+![dijkstra!](img/dijkstra1.png)
+- B1: Cho khoảng cách từ nguồn đến chính nó = 0, mọi đỉnh còn lại = INF
+- B2: Chọn ra đỉnh chưa được thăm (trong tập unmarked), có trọng số nhỏ nhất
+- B3: Duyệt qua tất cả đỉnh kề với nó, cập nhật Relaxation **d[v] = min(d[v], d[u] + (u,v))**
+
+![dijkstra!](img/dijkstra2.png)
+![dijkstra!](img/dijkstra3.png)
 
