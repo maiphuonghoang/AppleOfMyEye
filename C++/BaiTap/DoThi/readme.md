@@ -233,3 +233,12 @@
 ![dijkstra!](img/dijkstra2.png)
 ![dijkstra!](img/dijkstra3.png)
 
+###  Chu Trình Euler Và Đường Đi Euler
+![euler!](img/euler1.png)
+![euler!](img/euler2.png)
+- K có trường hợp có 1 đỉnh bậc lẻ vì tổng bậc trên đồ thị vô hướng là 1 số chẵn (luôn = 2 * cạnh) => Số đỉnh bậc lẻ phải là 1 số chẵn  
+
+![euler!](img/euler3.png)
+- Lấy đỉnh ở đầu stack có 2 trường hợp: 
+  - Danh sách kề của đỉnh đầu stack rỗng (k còn cạnh nối giữa các cạnh trên đồ thị) thì xóa đỉnh đó khỏi stack và ném nó vào Euler cycle 
+  - Dsk chưa rỗng thì lấy 1 cạnh trong dsk ra và ném vào stack, xóa cạnh (v, u)
