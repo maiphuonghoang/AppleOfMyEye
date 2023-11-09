@@ -175,6 +175,19 @@ void erase2(node *&head, int pos){
         delete posth;
     }
 }
+void sapxep(node **head){
+    for (node *i = *head; i->next!=NULL; i=i->next){
+        node *minNode = i;
+        for (node *j = i->next; j!=NULL; j=j->next){
+            if(minNode->data < j->data){
+                minNode = j;
+            }
+        }
+        int tmp = minNode->data;
+        minNode->data = i->data;
+        i->data = tmp;
+    }
+}
 void run2(){
     node* head = NULL;
     while(1){
@@ -215,6 +228,14 @@ void run2(){
             erase(&head, pos);
         }
         else if(lc == 7){
+            duyet(head);
+        }
+        else if(lc == 8){
+            int a[] = {10, 9, 1, 2, 4, 5, 3, 7, 6, 8};
+            for (int i = 0; i < 10; i++){
+                pushBack(&head, a[i]);
+            }
+            sapxep(&head);
             duyet(head);
         }
         else if(lc = 0){

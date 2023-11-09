@@ -1,36 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node{
-    int data; 
-    Node *next;
-};
-typedef struct Node* node;
+struct Student{
+    string name, id;
+    double gpa;
 
-// Cấp phát động 1 node mới với dữ liệu là số nguyên x 
-node makeNode(int x){
-    node tmp = new Node();
-    // Vì temp là con trỏ nên để truy cập vào data thì dùng -> chứ k .
-    tmp->data = x;
+    Student(){}
+
+    Student(string id, string ten, double diem){
+        name = ten;
+        gpa = diem;
+    }
+};
+struct SV{
+    Student s; 
+    SV *next;
+};
+typedef struct SV* sv;
+
+// Cấp phát động 1 node mới với dữ liệu là Sinh Vien  
+sv makeNode(){
+    Student s;
+    cout << "Nhap thong tin sinh vien";
+    cout << "\nNhap ID : "; cin >> s.id;
+    cout << "Nhap ten : "; cin.ignore();
+    getline(cin, s.name);
+    cout << "Nhap gpa : "; cin >> s.gpa;
+
+    sv tmp = new SV();
+    tmp->s = s; 
     tmp->next = NULL;
     return tmp;
 }
 // Kiểm tra rỗng
-bool empty(node a){
+bool empty(sv a){
     return a == NULL;
 }
-int size(node a){
+int size(sv a){
     int cnt = 0;
     while(a != NULL){
         ++cnt;
-        a = a->next;//gán địa chỉ của node tiếp theo cho node hiện tại 
-        //cho node hiện tại nhảy sang node tiếp theo 
+        a = a->next;
     }
     return cnt;
 }
 // Thêm 1 phần tử vào đầu danh sách liên kết 
-void insertFirst(node &a, int x){//Sử dụng toán tử dải tham chiếu 
-    node tmp = makeNode(x);
+void insertFirst(sv &a){//Sử dụng toán tử dải tham chiếu 
+    sv tmp = makeNode();
     if(a == NULL)
         a = tmp;
     else{
@@ -38,22 +54,14 @@ void insertFirst(node &a, int x){//Sử dụng toán tử dải tham chiếu
         a = tmp;
     }
 }
-void insertFirst2(node *a, int x){//Sử dụng con trỏ <Con trỏ kiểu node>
-    node tmp = makeNode(x);
-    if(*a == NULL)
-        *a = tmp;//<Giá trị của con trỏ kiểu node>
-    else{
-        tmp->next = *a;
-        *a = tmp;
-    }
-}
+
 // Thêm 1 phần tử vào cuối
-void insertLast(node &a, int x){
-    node tmp = makeNode(x);
+void insertLast(sv &a){
+    sv tmp = makeNode();
     if(a == NULL)
         a = tmp;
     else{
-        node p = a;
+        sv p = a;
         while(p->next != NULL){
             p = p->next;
         }
@@ -61,42 +69,41 @@ void insertLast(node &a, int x){
     }
 }
 // Thêm 1 phần tử vào giữa 
-void insertMiddle(node &a, int x, int pos){
-    // Chèn x vào vị trí pos của dslk 
+void insertMiddle(sv &a, int pos){
     int n = size(a);
     if(pos <= 0 || pos > n+1)
         cout << "Vi tri chen khong hop le" << endl;
     if(pos == 1){
-        insertFirst(a, x);
+        insertFirst(a);
         return;
     }
     else if(pos == n + 1){
-        insertLast(a, x);
+        insertLast(a);
         return;
     }
     else{
-        node p = a;
+        sv p = a;
         // chạy đến vị ví pos - 1;
         for (int i = 1; i < pos - 1; i++){
             p = p->next;
         }
-        node tmp = makeNode(x);
+        sv tmp = makeNode();
         tmp->next = p->next;
         p->next = tmp;
     } 
 }
 
 // Xóa phần tử ở đầu 
-void deleteFirst(node &a){
+void deleteFirst(sv &a){
     if(a == NULL)
         return;
     a = a->next;
 }
 // Xóa phần tử 
-void deleteLast(node &a){
+void deleteLast(sv &a){
     if(a == NULL) return;
     // duyệt đến ptu trước phần tử cuối cùng 
-    node truoc = NULL, sau = a;
+    sv truoc = NULL, sau = a;
     while(sau->next != NULL){
         truoc = sau;
         sau = sau->next;
@@ -107,10 +114,12 @@ void deleteLast(node &a){
         truoc->next = NULL;
 }
 // Xóa ở giữa 
-void deleteMiddle(node &a, int pos){
-    if(pos <= 0 || pos > size(a))
+void deleteMiddle(sv &a, int pos){
+    if(pos <= 0 || pos > size(a)){
+        cout << "Vi tri chen khong hop le" << endl;
         return;
-    node truoc = NULL, sau = a;
+    }
+    sv truoc = NULL, sau = a;
     for (int i = 1; i < pos; i++){
         truoc = sau;
         sau = sau->next;
@@ -119,53 +128,59 @@ void deleteMiddle(node &a, int pos){
     // trước nằm ở vị trí pos - 1, sau nằm ở vị trí pos 
     else truoc->next = sau->next; 
 }
-void print(node a){
+void in(Student s){
+    cout << "------------------------------\n";
+    cout << "ID : " << s.id << endl;
+    cout << "Name : " << s.name << endl;
+    cout << "GPA : " << fixed << setprecision(2) << s.gpa << endl;
+    cout << "------------------------------";
+}
+
+void print(sv a){
+    cout << "Danh sach sinh vien" << endl;
     while(a!=NULL){
-        cout << a->data << " ";
+        in(a->s);
         a = a->next;
     }
+    cout << endl;
 }
-void sapxep(node &a){
-    for (node p = a; p->next != NULL; p = p->next){
-        node min = p;
-        for (node q = p->next; q != NULL; q = q->next){
-            if(q->data < min->data)
+void sapxep(sv &a){
+    for (sv p = a; p->next != NULL; p = p->next){
+        sv min = p;
+        for (sv q = p->next; q != NULL; q = q->next){
+            if(q->s.gpa < min->s.gpa)
                 min = q;
         }
         // Chỉ hoán vị 2 giá trị của node 
-        int tmp = min->data;
-        min->data = p->data;
-        p->data = tmp;
+        Student tmp = min->s;
+        min->s = p->s;
+        p->s = tmp;
     }
 }
 void run(){
-    cout << sizeof(Node) << endl;
-    node head = NULL;
+    sv head = NULL;
     while(1){
         cout << "---------------------MENU----------------------\n";
-        cout << "1. Chen phan tu vao dau danh sach" << endl;
-        cout << "2. Chen phan tu vao cuoi danh sach" << endl;
-        cout << "3. Chen phan tu vao giua danh sach" << endl;
-        cout << "4. Xoa phan tu o dau danh sach" << endl;
-        cout << "5. Xoa phan tu o cuoi danh sach" << endl;
-        cout << "6. Xoa phan tu o giua danh sach" << endl;
+        cout << "1. Chen sinh vien vao dau danh sach" << endl;
+        cout << "2. Chen sinh vien vao cuoi danh sach" << endl;
+        cout << "3. Chen sinh vien vao giua danh sach" << endl;
+        cout << "4. Xoa sinh vien o dau danh sach" << endl;
+        cout << "5. Xoa sinh vien o cuoi danh sach" << endl;
+        cout << "6. Xoa sinh vien o giua danh sach" << endl;
         cout << "7. Duyet danh sach" << endl;
-        cout << "8. Sap xep cac phan tu trong danh sach" << endl;
+        cout << "8. Sap xep cac sinh vien trong danh sach" << endl;
         cout << "0. Thoat" << endl;
         cout << "-------------------------------------------\n";
         cout << "Nhap lua chon : "; 
         int lc; cin >> lc;
         if(lc == 1){
-            int x; cout << "Nhap gia tri can chen :"; cin >> x;
-            insertFirst(head, x);
+            insertFirst(head);
         }else if(lc == 2){
-            int x; cout << "Nhap gia tri can chen :"; cin >> x;
-            insertLast(head, x);
+            insertLast(head);
         }
         else if(lc == 3){
-            int x; cout << "Nhap gia tri can chen : "; cin >> x;
             int pos; cout << "Nhap vi tri can chen : "; cin >> pos;
-            insertMiddle(head, x, pos);
+            insertMiddle(head, pos);
         }
         else if(lc == 4){
             deleteFirst(head);
