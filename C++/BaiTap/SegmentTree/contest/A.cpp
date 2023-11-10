@@ -2,21 +2,9 @@
 #define maxn 200005
 using namespace std;
 
-int n, q, a[maxn];
+int n, q;
 long long t[maxn*4];
 
-// nlogn
-void build (int id, int l, int r){
-    if(l==r){
-        t[id] = a[l];
-        return;
-    }
-    int mid = (l + r) / 2;
-    build(id*2, l, mid);
-    build(id*2 +1, mid + 1, r);
-    t[id] = t[id*2] + t[id*2 +1];
-
-}
 // logn
 long long get (int id, int l, int r, int u, int v){
     if(r < u || v < l)//nằm ngoài 
@@ -34,7 +22,6 @@ void update (int id, int l, int r, int pos, int val){
         return;
     if(l == r) {//đoạn chứa pos l=r=pos
         t[id] = val;
-        a[l] = val;
         return;
     }
     // x nằm trong [l,r], xem nằm bên trái hay phải 
@@ -45,8 +32,11 @@ void update (int id, int l, int r, int pos, int val){
 }
 void run (){
     cin >> n >> q;
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    build(1,1,n);
+    // n lần update, k cần dùng build 
+    for (int i = 1; i <= n; i++) {
+        int x; cin >> x;
+        update(1, 1, n, i, x);
+    }
     while (q--){
         int type, pos, val, u, v;
         cin >> type; 
