@@ -9,6 +9,7 @@ int basicBit(){
     cout << (a & b), el; // 1101 & 1000 = 1000 = 8
     cout << (8 | 7), el; // 1000 | 0111 = 1111 = 15
     cout << (8 ^ 6), el; // 1000 ^ 0110 = 1110 = 14
+    // biểu thức XOR phụ thuộc vào số bit 1, nếu số bit 1 lẻ thì true mà số bit 1 chẵn là false
     unsigned c = ~a;
     cout << c , el; // 2^32 - 8 //4294967287
     cout << (1ll << 32) - 8 -1, el;//4294967287
