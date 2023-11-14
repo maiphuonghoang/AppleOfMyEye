@@ -9,13 +9,15 @@ int mod = 1e9 + 7;
 /**
  * https://cses.fi/problemset/task/1634/
 */
+// f[s]: số xu nhỏ nhất tạo ra tổng là s 
 void run() {
     int n; ll sum; 
     cin >> n >> sum;
     ll a[n];
     for (ll &x : a) cin >> x;
     vector<ll> f(sum+1, 0);
-    f[0] = 0;       
+    f[0] = 0;     
+    // O(sum*n) = 10^7   
     for (ll s = 1; s <=sum; s++) {
         f[s] = 1e9;
         for (ll i = 0; i < n; i++){
