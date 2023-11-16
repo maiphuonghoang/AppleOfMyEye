@@ -21,3 +21,9 @@
 ![](img/B16_dp35_3.png)
 - F[l, r] = F[r] - F[l-1]
 - F[i] = lẻ - chẵn tìm những F[i] cùng tính chất để trừ 
+5. Sum substring 
+6. Tổng bình phương 
+7. Biến đổi xâu 
+8. Xóa chữ số 
+9. Equal set
+10. Cắt hình chữ nhật 
