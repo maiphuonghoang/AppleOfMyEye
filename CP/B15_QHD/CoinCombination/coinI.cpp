@@ -3,10 +3,10 @@
 #define el cout << "\n";
 #define f0(i, n) for (int i = 0; i < n; i++)
 #define f1(i, n) for (int i = 1; i <= n; i++)
+#define maxn 1000006
 using ll = long long;
-#define maxn 1e6
 using namespace std;
-int mod = 1e9 + 7;
+int mod = 1000000007;
 /**
  * 
 */
@@ -27,14 +27,26 @@ void run() {
     }
     cout << f[sum];
 }
- 
+int a[102], n, x;
+ll f[maxn];
+void run2(){
+    cin >> n >> x;
+    f1(i, n) cin >> a[i];
+    f[0] = 1;
+    f1(i, x){
+        f1(j, n) 
+            if(a[j] <= i)
+                f[i] = (f[i]+f[i-a[j]]) % mod;
+    }
+    cout << f[x];
+}
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    // #ifndef ONLINE_JUDGE 
-    // freopen ("D:\\AppleOfMyEye\\CP\\input.txt", "r", stdin);
-    // #endif
-    run();
+    #ifndef ONLINE_JUDGE 
+    freopen ("D:\\AppleOfMyEye\\CP\\input.txt", "r", stdin);
+    #endif
+    run2();
     return 0;
 }
