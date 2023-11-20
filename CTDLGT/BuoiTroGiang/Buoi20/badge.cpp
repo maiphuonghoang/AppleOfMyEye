@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define el cout << "\n";
+#define el cout << "\n"
 #define yes cout << "Yes\n"
 #define no cout << "No\n"
 #define f0(i,n) for (int i = 0; i < n; i++)
@@ -9,19 +9,29 @@ using ll = long long;
 using namespace std;
 int mod = 1e9+7;
 
-/** Truy vấn đường đi 
- * Tìm đường đi ngắn nhất giữa đỉnh X và đỉnh Y
+/*
+đã used mà quay lại 
+3
+2 3 2
+=> 2 2 3 
 */
-int n, m, s1, s2, t1, t2;
-char a[505][505];
-int dx[] = {-1, 0, 0, 1};
-int dy[] = {0, -1, 1, 0};
-int ok = 0;
-
-
+int res, d[1005], p[1005];
+void xuly(int u){
+    d[u]++;
+    if (d[u] == 2)
+        res = u;
+    else
+        xuly(p[u]);
+}
 
 void run(){
-    
+    int n; cin >> n;
+    f1(i, n) cin >> p[i];
+    f1(i, n){
+        memset(d, 0, sizeof(d));
+        xuly(i);
+        cout << res << " ";
+    }
 }
 
 int main() {

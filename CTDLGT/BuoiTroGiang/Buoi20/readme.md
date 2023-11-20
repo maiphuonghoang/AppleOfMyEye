@@ -9,3 +9,9 @@
 - Đặc điểm 
   - K chu trình âm lặp n-1 vòng, lặp thêm nữa cũng k nhỏ hơn 
   - Có chu trình âm lặp n-1 vòng, lặp 1 lần nữa nhỏ hơn 
+
+### Thuật toán Floyd Warshall
+- Khác với Dijkstra, BellmanFord áp dụng để tìm đường đi ngắn nhất từ 1 đỉnh tới mọi đỉnh còn lại trên đồ thị (SSSP-Single source shortest path), Floyd được áp dụng để tìm đường đi ngắn nhất giữa mọi cặp đỉnh trên đồ thị (All-pair shortest path).
+- Thuật toán áp dụng cho đồ thị có hướng, vô hướng k có chu trình âm (có thể có cạnh âm)
+- Độ phức tạp: O(V^3)
+- Thông thường Floyd chỉ áp dụng được với đồ thị nhỏ có V <= 400, dùng ma trận kề 
