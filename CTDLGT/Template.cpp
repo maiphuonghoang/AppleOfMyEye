@@ -21,7 +21,9 @@ int main2(){
 }
 
 #include <bits/stdc++.h>
-#define el cout << "\n";
+#define el cout << "\n"
+#define yes cout << "Yes\n"
+#define no cout << "No\n"
 #define f0(i,n) for (int i = 0; i < n; i++)
 #define f1(i,n) for (int i = 1; i <= n; i++)
 #define maxn 100006
@@ -46,3 +48,8 @@ int main() {
     run();
     return 0;
 }
+
+int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+int dx[] = {-1, 0, 0, 1};
+int dy[] = {0, -1, 1, 0};
