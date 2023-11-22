@@ -167,7 +167,7 @@ int checkSoDayDu(string s){
     }
     return se.size() == 10;
 }
-void run(){
+void run5(){
     int t; cin >> t;
     while(t--){
         string s; cin >> s;
@@ -176,6 +176,153 @@ void run(){
         else if(res == 0) no;
         else yes;
     }
+}
+//----------------------------------------------------------------
+/**Xâu con nhỏ nhất 1
+  * Tìm xâu con nhỏ nhất của s1 chứa đầy đủ các kí tự của s2
+  * => Tìm cửa sổ xâu 1 chứa tất cả kí tự xâu 2 rồi thu hẹp cửa sổ đó lại 
+2
+timetopractise
+toc
+zoomlazapzo
+oza
+=>  toprac
+    apzo 
+*/
+void run6(){
+    int t; cin >> t;
+    while(t--){
+        string s1, s2; cin >> s1 >> s2;
+        int dem1[256] = {0}, dem2[256] = {0};
+        for(char x: s2) dem2[x]++;
+        int ans = INT_MAX, left = 0, index = -1;
+        int cnt = 0;//cnt xâu 1 đang chứa bn kí tự của xâu 2
+        //cnt chứa đúng bằng chiều dài xâu 2 thì thu nhỏ cửa sổ lại
+        
+        for (int i=0; i<s1.length(); i++){
+            dem1[s1[i]]++;
+            if(dem1[s1[i]] <= dem2[s1[i]]) 
+                ++cnt;
+            if(cnt == s2.length()){//đếm được đầy đủ xâu 2 rồi = timetoprac|tise
+                //thu hẹp cửa sổ lại
+                //tần xuất ở xâu 1 > xâu 2 hoặc kí tự đó k xh ở xâu 2
+                while(dem1[s1[left]] > dem2[s1[left]] || dem2[s1[left]] == 0) {
+                    if(dem1[s1[left]] > dem2[s1[left]] ){
+                        dem1[s1[left]]--;
+                    }
+                    left++;//dịch left sang phải để bỏ qua kí tự đó 
+                }
+                //đến vị trí bắt đầu của cửa sổ đấy
+                //lấy vị trí i hiện tại tính chiều dài của cửa sổ 
+                if(ans > i-left + 1){
+                    ans = i-left+1;
+                    index = left;
+                }
+            }
+        }
+        if(index == -1) cout << "-1" << endl;
+        else cout << s1.substr(index, ans) << endl;
+    }  
+}
+//----------------------------------------------------------------
+/** Xâu con nhỏ nhất 2
+ * Tìm độ dài xâu con nhỏ nhất của s chứa đầy đủ các kí tự của s mỗi kí tự ít nhất 1 lần.
+ * VD s=aabcbcdbca có xâu con min là dbca
+2
+aabcbcdbca
+aaab
+=> 4 2 
+*/
+void run7(){
+    int t; cin >> t;
+    while(t--){
+        string s; cin >> s;
+        map<char, int> mp;
+        for (char x : s) mp[x]++;
+        int len = mp.size();//số lượng kí tự khác nhau trong xâu s
+        int ans = INT_MAX, left = 0, cnt = 0;
+        int dem[256] = {0};
+        for (int i = 0; i < s.length(); i++){
+            dem[s[i]]++;
+            if(dem[s[i]] == 1) //gặp lần đầu thì tăng số lượng xuất hiện lên 
+                ++cnt;
+            if(cnt == len)//tìm được xâu con chứa tất cả thì thu hẹp
+            {
+                while(dem[s[left]] > 1){
+                    dem[s[left]]--;
+                    ++left;
+                }
+                ans = min(ans, i-left+1);
+            }
+        }
+        cout << ans << endl;
+    }
+}
+//----------------------------------------------------------------
+/**Sumstring 
+ * Xâu s được gọi là sumstring nếu tồn tại 1 số tự nhiên k>2 sao cho
+ * ta có thể chia xâu s thành k xâu con khác nhau S=(s1,s2,...sk) 
+ * sao cho các số được tạo bởi các xâu con tmdk Si=Si-1+Si-2 (i=3,4..,k)
+ * VD S = 123415538 là 1 sumstring khi k = 3
+ * S = (123, 415, 538) tm 123 + 415 = 538
+ * 3<=length(s)<=10^5
+3
+123415538
+12345
+1122335588143
+=> YES NO YES
+*/
+//Cộng 2 xâu là 2 số nguyên lớn 
+string add(string a, string b){
+    if(a.length() < b.length()) 
+        swap(a,b);
+    int n = a.length(), m = b.length();
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    b += string(n-m, '0');//thêm n-m số 0 vào cuối b
+                        //cách khởi tạo 1 string: số lượng kí tự của xâu, kí tự muốn tạo 
+    string res = "";
+    int nho = 0;
+    for(int i=0; i<n; i++){
+        int tmp = (a[i]-'0')+(b[i]-'0')+nho;
+        res += (char)(tmp % 10 + '0');
+        nho = tmp/=10;
+    }
+    if(nho) res += (char)(nho + '0');
+    reverse(res.begin(), res.end());
+    return res;
+}
+//Kiểm tra xâu s, xâu 1 bắt đầu từ l, có chiều dài len1
+//xâu 2 bắt đầu từ l+len1, có chiều dài len2
+bool kt(string s, int l, int len1, int len2){
+    string s1 = s.substr(l, len1);
+    string s2 = s.substr(l+len1, len2);
+    string s3 = add(s1, s2);
+    if(s3.length() > (s.length() - len1 - len2 - l))
+        return false;
+    if(s3 == s.substr(l + len1 + len2, s3.length())){
+        //xâu s3 là xâu cuối cùng trong s 
+        if(s.length() == l + len1 + len2 + s3.length())
+            return true;
+        return kt(s, l+len1, len2, s3.length());
+    }
+    return false;
+}
+void solve(){
+    string s; cin >> s;
+    for(int i=1; i<s.length(); i++)
+        for (int j=1; j<=s.length()-i; j++)
+            if(kt(s, 0, i, j)){
+                yes; return;
+            }
+    no;
+}
+void run(){
+    int t; cin >> t;
+    while(t--){
+        solve();
+    }
+
 }
 int main() {
     ios_base::sync_with_stdio(0);
