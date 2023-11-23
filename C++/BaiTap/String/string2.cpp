@@ -317,12 +317,181 @@ void solve(){
             }
     no;
 }
-void run(){
+void run8(){
     int t; cin >> t;
     while(t--){
         solve();
     }
 
+}
+//----------------------------------------------------------------
+/**Tạo bảng màu 
+ * Xâu s độ dài n chỉ gồm R,B,G. Xâu kí tự nhận được có ít nhất r kí tự R, 
+ * b kí tự B, g kí tự G. Đếm số xâu kí tự thỏa mãn yêu cầu trên.
+ * 
+4 1 1 1 => 36
+4 2 0 1 => 22
+*/
+ll giaithua[22];
+void init(){
+    giaithua[0] = 1;
+    for (int i=1; i<=20; i++)
+        giaithua[i] = i*giaithua[i-1];
+}
+void run9(){
+    int n, g, r, b; cin >> n >> g  >> r >> b;
+    init();
+    ll res = 0;
+    // R+G+B = n; R>=r; G>=g; B>=b;
+    for(int R=n; R>=r; R--){
+        for(int G=n-r; G>=g; G--){
+            int B = n-R-G;
+            if(B>=b)
+                res+=giaithua[n]/(giaithua[R] * giaithua[G] * giaithua[B]);
+        }
+    }
+    cout << res << endl;
+}
+//----------------------------------------------------------------
+/** Tính giai thừa các chữ số 
+ * F(x) là tích giai thừa các chữ số của x
+ * F(135) = 1!*5!*3! = 720
+ * Đầu tiên họ chọn 1 số a có n chữ số và có ít nhất 1 chữ số lớn hơn 1,
+ * có thể có chữ số 0 ở đầu. Sau đó họ tìm 1 số x lớn nhất thỏa mãn:
+ *      1. x k chứa chữ số 0 hoặc 1
+ *      2. F(x) = F(a)
+1234 = 1!2!3!4!
+     = 1!2!3!4*3!
+     = 1!2!3!*2!2!*3!
+     =>33222
+4!=4*3!=2!2!3!
+5!
+6!=6*5!=3!5!
+7!
+8!=8*7!=2!2!2!7!
+9!=9*8*7!
+  =3.3.2.2.2.7!
+  =6.6.2.7!
+  =3!3!2!7!    
+*/
+void run10(){
+    // chạy từ 2=>9 số nào tách được thành giai thừa thì thay 
+    string s; cin >> s;
+    string res = "";
+    for(char x : s){
+        if(x=='4') res+="322";
+        else if(x=='6') res+="35";
+        else if(x=='8') res+="2227";
+        else if(x=='9') res+="3322";
+        else if(x!='1'&&x!='0') res+=x;
+    }
+    sort(res.begin(), res.end(), greater<char>());
+    cout << res << endl;
+}
+//----------------------------------------------------------------
+/**Loại bỏ 100
+ * 1011110000=>1011100=>1011
+01
+10
+21
+31
+41
+51
+1011100
+41
+1011
+6
+*/
+void run11(){
+    string s; cin >> s;
+    int ans = 0;
+    for (int i=0; i<s.length()-2; i++){
+        cout <<i<< s[i] << endl;
+        if(s=="") break;
+        if(s[i]=='1'&&s[i+1]=='0'&&s[i+2]=='0'){
+            ans+=3;
+            s.erase(i, 3);
+            cout << s << endl;
+            i-=2;
+        }
+    }
+    cout << ans << endl;
+}
+//----------------------------------------------------------------
+/**Số lặp lại
+ * Cho 3 số a, x, y. Tìm ước chung lớn nhất của 2 số P và Q trong đó
+ * P lặp lại x lần số a và Q lặp lại y lần số a.
+ * VD a=2,x=3,y=2 thì P=222, Q=22
+ * 1<=a,x,y<=10^18
+ * Số lần lặp lại gcd(x,y)
+2
+2 2 3
+123 5 2
+=> 2 123
+*/
+ll gcd(ll a, ll b){
+    if(b==0) return a;
+    return gcd(b, a%b);
+}
+void run12(){
+    int t; cin >> t; cin.ignore();
+    while(t--){
+        ll a, x, y; cin >> a >> x >> y;
+        ll g = gcd(x, y);
+        for(int i=0; i<g; i++) cout << a;
+        cout << endl;
+    }
+}
+//----------------------------------------------------------------
+/**Thống kê từ 
+ * Liệt kê các từ xh trong xâu theo tần xuất giảm dần,
+ * cùng tần xuất thì theo thứ tự từ điển 
+2
+ngon ngu python, java, c++, javascript duoc su dung nhieu.
+python-java-c++ 2021-2022!
+=> 
+c++ 2
+java 2
+python 2
+2021 1
+2022 1
+dung 1
+duoc 1
+javascript 1
+ngon 1
+ngu 1
+nhieu 1
+su 1
+*/
+bool check(char c){
+    return c==' '||c=='.'||c==','||c=='!'||c=='?'||c=='-';
+}
+bool cmp(pair<string, int> a, pair<string, int> b){
+    if(a.second != b.second)
+        return a.second > b.second;
+    return a.first < b.first;
+}
+void run(){
+    int t; cin >> t; cin.ignore();
+    map<string, int> mp;
+    while(t--){
+        string s; getline(cin, s);
+        string tmp="";
+        for(int i=0; i<s.length(); i++){
+            if(s[i]==' ') continue;
+            while(i<s.length()&&!check(s[i])){
+                tmp += (char)s[i];
+                ++i;
+            }
+            // cout << tmp << endl;
+            mp[tmp]++;
+            tmp = "";
+        }
+    }
+    vector<pair<string, int>> v;
+    for (auto it : mp) v.push_back(it);
+    sort(v.begin(), v.end(), cmp);
+    for (auto it : v) cout << it.first << " " << it.second << endl;
 }
 int main() {
     ios_base::sync_with_stdio(0);
