@@ -30,7 +30,7 @@
 - Độ phức tạp: O(nlogn)
 ### MERGE SORT
 - Thuật toán sắp xếp trộn sử dụng phương pháp chia và trị, chia dãy ban đầu thành dãy con cho tới khi dãy chỉ còn 1 phần tử, sau đó thực hiện trộn 2 dãy con thành 1 dãy tăng dần với độ phức tạp tuyến tính
-- Trộn 2 dãy con đã được sắp xếp tạo thành 1 dãy
+- Trộn 2 dãy con đã được sắp xếp tạo thành 1 dãy *O(n+m)*
   - Copy dãy bên trái ra 1 mảng, dãy bên phải ra 1 mảng rồi gán lại 
 - Độ phức tạp: O(nlogn)
 ### QUICK SORT
