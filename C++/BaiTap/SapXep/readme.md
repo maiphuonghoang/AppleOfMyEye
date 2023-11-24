@@ -33,3 +33,25 @@
 - Trộn 2 dãy con đã được sắp xếp tạo thành 1 dãy
   - Copy dãy bên trái ra 1 mảng, dãy bên phải ra 1 mảng rồi gán lại 
 - Độ phức tạp: O(nlogn)
+### QUICK SORT
+#### Lomuto
+- Tư tưởng thuật toán 
+  - Chốt là phần tử cuối cùng 
+  - i = l-1
+  - Duyệt j bắt đầu từ l tới r-1
+    - a[j] <= pivot => tăng i lên swap(a[i], a[j])
+    - a[j] > pivot => bỏ qua 
+  - Sau khi duyệt xong thì tăng i lên trả về vị trí chốt 
+![Lomuto](img/quick_lomuto.png) 
+#### Hoarse 
+- Tư tưởng thuật toán 
+  - Chốt là phần tử bên trái 
+![Hoarse](img/quick_hoarse1.png) 
+  - Duyệt chỉ số i từ bên trái, chỉ số j từ bên phải 
+    - Chừng nào a[i] < chốt thì tăng i lên 
+    - Chừng nào a[j] > chốt thì giảm i đi  
+  - Tìm ra cặp nghịch thế 
+    - Khi tìm được phần tử bên trái >= chốt => dừng
+    - Khi tìm được phần tử bên phải <= chốt => dừng 
+    - => swap(a[i], a[j])
+  - Kết thúc khi i > j => trả về vị trí j 
