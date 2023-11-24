@@ -439,10 +439,93 @@ void qs(int a[], int l, int r){
     if(l < j) qs(a, l, j);
     if(i < r) qs(a, i, r);
 }
-void run(){
+void run14(){
     int n; cin >> n;
     int a[n]; nhap_mang;
     qs(a, 0, n-1);
+}
+//----------------------------------------------------------------
+/**Sắp xếp chèn 
+ * In ra phần tử được chèn và vị trí chèn 
+6 
+8 5 2 7 9 3 
+=>
+5 0 
+2 0 
+7 2 
+9 4 
+3 1 
+*/
+void run15(){
+    int n; cin >> n;
+    int a[n];
+    nhap_mang;
+    for(int i=1; i<n ; i++){
+        int x = a[i], pos = i-1;
+        while(pos>=0 && a[pos]>x){
+            a[pos+1] = a[pos];
+            --pos;
+        }
+        cout << x << " " << pos+1 << endl;
+        a[pos+1] = x;
+    }
+}
+//----------------------------------------------------------------
+/** Phân tích nhóm
+ * 2 phần tử được xếp chung nhóm với nhau nếu như chênh lệch giữa chúng 
+ * không vượt quá K 
+Sắp xếp tăng dần,xét 2 ptu kề nhau độ chênh lệch
+7
+2 6 1 7 3 4 9 
+=> 3
+{1 2 3 4} {6 7} {9}
+*/
+void run16(){
+    int n, k; cin >> n >> k;
+    int a[n]; nhap_mang;
+    sort(a, a+n);
+    int cnt = 1;//ptử đầu là 1 nhóm 
+    for(int i=1; i<n; i++){
+        if(a[i] - a[i-1] <= k)
+            continue;
+        else
+            cnt++;
+    }
+    cout << cnt;
+}
+//----------------------------------------------------------------
+/** Đoàn thứ i được mời lưu diễn từ ngày ai đến ngày b1
+ * Chọn những đoàn nào để số lượng đoàn là nhiều nhất mà 
+ * k bị trùng nhau về mặt thời gian 
+Chọn đoàn có thời gian kết thúc càng sớm càng tốt 
+6
+3 8 
+9 12
+6 10
+1 4
+2 7
+11 14
+=> 3
+*/
+bool cmp(pair<int, int> a, pair<int, int> b){
+    return a.second < b.second;
+}
+void run(){
+    int n; cin >> n;
+    vector<pair<int, int>> v(n);
+    f0(i, n) cin >> v[i].first >> v[i].second;
+    // sắp xếp theo thời gian kết thúc 
+    sort(v.begin(), v.end(), cmp);
+    int ans = 1;
+    int tmp = v[0].second;
+    for(int i=1; i<n; i++){
+        // thời gian bắt đầu của chuyến lưu diễn mới có > tgian kết thúc của chuyến nãy k
+        if(v[i].first > tmp){
+            ans++;
+            tmp = v[i].second;//cập nhật thời gian kết thúc mới 
+        }
+    }
+    cout << ans << endl;
 }
 int main() {
     ios_base::sync_with_stdio(0);
