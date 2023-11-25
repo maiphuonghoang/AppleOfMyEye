@@ -478,10 +478,13 @@ void run16(){
 //-------------------------------------------------
 /** Sắp xếp theo tần xuất 
 2
+5
 5 5 4 6 4
 5
 9 9 9 2 5
 => 
+4 4 5 5 6 
+9 9 9 2 5
 */
 map<int, int> mp;
 bool cmpTx(int a, int b){
@@ -489,7 +492,7 @@ bool cmpTx(int a, int b){
         return mp[a] > mp[b];
     return a < b;
 }
-void run(){
+void run17(){
     int n; cin >> n; 
     int a[n];
     f0(i,n){
@@ -500,6 +503,276 @@ void run(){
     f0(i,n) cout << a[i] << " ";
     el;
     mp.clear();//các test sau 
+}
+bool cmpTx2(pair<int, int> a, pair<int, int> b){
+    if(a.second != b.second)
+        return a.second > b.second;
+    return a.first < b.first;
+}
+void run18(){//k dùng map toàn cục 
+    int n; cin >> n; 
+    int a[n];
+    map<int, int> mp;
+    f0(i,n){
+        cin >> a[i];
+        mp[a[i]]++;
+    }
+    vector<pair<int, int>> v;
+    for(auto it : mp)
+        v.push_back(it);
+    sort(begin(v), end(v), cmpTx2);
+    for(auto it : v){
+        for(int j=0; j<it.second; j++)
+            cout << it.first << " ";
+    }
+    el;
+}
+//-----------------------------------------------------
+/** Đếm cặp x^y > y^x
+ * Kiến thức x < y => x^y > y^x
+ * Ngoại lệ (2,3) (2,4)
+ * duyệt qua ptu trong x, sort y 
+ * tìm vị trí đầu tiên của ptu trong mảng 2 > a[i]x  
+ * X = {2, 1, 6}, Y = {1, 5}
+ * 3 cặp (2,1) (2,5) (6,1)
+3 2
+2 1 6
+1 5 
+=> 3
+*/
+int cnt[5];//đếm tần xuất của 0,1,2,3,4 trong mảng 2
+// Tìm vị trí đầu tiên của ptu > x trong đoạn l-r
+//int first_pos_greater(int a[], int l, int r, int x){}
+
+//đếm xem có bn ptu thuộc mảng y mà > a[i] của x
+int count(int y[], int m, int x){
+    if(x == 0)
+        return 0;
+    if(x == 1) //1^0 > 0^1
+        // tất cả số 0 trong mảng 2 là đáp án 
+        return cnt[0];
+    //x != 0, 1
+    ll res = cnt[0] + cnt[1];
+    /*
+    auto it = upper_bound(y, y+m, x);
+    res += (y+m) - it;  
+    */
+    //hoặc 
+    int l = first_pos_greater(y, 0, m-1, x);
+    if(l != -1) 
+        res += m-l;
+    if(x == 2){
+        //2
+        //3 3 3 4 4 4 5 5 
+        res -= (cnt[3] + cnt[4]);
+    }
+    if(x == 3){
+        // x = 3 vô tình bỏ lỡ 2 đếm thiếu
+        //1 2 2 3 4 6 8 
+        res += cnt[2];
+    }
+    return res;
+}
+void run19(){//O(nlogm)
+    int n, m; cin >> n >> m;
+    int a[n], b[m];
+    f0(i,n) cin >> a[i]; 
+    f0(i,m){
+        cin >> b[i];
+        if(b[i] <= 4)
+            cnt[b[i]]++;
+    } 
+    sort(b, b+m);
+    ll ans = 0;
+    for (int x : a)
+        ans += count(b, m, x);
+    cout << ans << endl;
+    memset(cnt, 0, sizeof(cnt));
+}
+//---------------------------------------------------------------
+/**Giao của 3 dãy số 
+ * Đưa ra phần tử có mặt trong cả 3 dãy đã được sắp xếp theo thứ tự tăng dần 
+Dùng 3 biến i,j,k để chạy 
+1 
+6 5 8
+1 5 10 20 40 80
+6 7 20 80 100
+3 4 15 20 30 70 80 120
+=> 20 80
+*/
+void run20(){
+    int n, m, k; cin >> n >> m >> k;
+    int a[n], b[m], c[k];
+    input(a); input(b); input(c);
+    vector<int> res;
+    int i=0, j=0, l=0;
+    while(i<n && j<m && l<k){
+        if(a[i] == b[j] && b[j] == c[l]){
+            res.push_back(a[i]);
+            ++i; ++j; ++k;
+        }else if(a[i] <= b[j] && a[i] <= c[l]){
+            ++i;
+        }else if(b[j] <= a[i] && b[j] <= c[l]){
+            ++j;
+        }else l++;
+    }
+    if(res.size() == 0) cout << "-1" << endl;
+    else{
+        for(int x : res)
+            cout << x << " ";
+        el;
+    }
+}
+//----------------------------------------------------------------
+/** Sắp xếp chẵn lẻ 
+ * Sắp xếp các số chẵn trong dãy theo thứ tự tăng dần và các số lẻ 
+ * theo thứ tự giảm dần  
+10
+1 2 3 4 5 6 7 7 9 6
+=> 
+9 2 7 4 7 6 5 3 1 6 
+*/
+void run21(){
+    int n; cin >> n;
+    int a[n];
+    vector<int> chan, le;
+    f0(i,n){
+        cin >> a[i];
+        if(a[i]%2 == 0) chan.push_back(a[i]);
+        else le.push_back(a[i]);
+    }
+    sort(chan.begin(), chan.end());
+    sort(le.begin(), le.end(), greater<int>());
+    int i = 0, j = 0;
+    for(int k=0; k<n; k++){
+        if(a[k]%2 == 0){
+            cout << chan[i] << " "; 
+            ++i;
+        }else{
+            cout << le[j] << " "; 
+            ++j;
+        }
+    }
+}
+//----------------------------------------------------------------
+/**Biểu thức lớn nhất 
+ * Dãy a được viết thành 1 hàng ngang, giữa 2 số liên tiếp có 1 khoảng trắng, 
+ * vậy có tất cả (n-1) khoảng trắng.
+ * Người ta muốn đặt k dấu cộng và (n-1-k) dấu trừ vào những khoảng trắng đó
+ * để nhận được 1 biểu thức có giá trị lớn nhất 
+ * Vd a[]={28,9,5,1,69} và k=2 thì 28+9-5-1+69 là biểu thức có giá trị lớn nhất 
+Muốn giá trị lớn thì đặt - vào nhỏ, + vào lớn 
+Sắp xếp các ptu từ chỉ số 1 tới chỉ số cuối cùng của mảng, k ptu max thì điền +
+2
+5 2 
+28 9 5 1 69
+5 1
+10 20 15 5 1
+=> 
+*/
+void run22(){
+    int n, k; cin >> n >> k;
+    int a[n]; nhap_mang;
+    sort(a+1, a+n, greater<int>());
+    ll ans = a[0];
+    for(int i=1; i<n; i++){
+        if(k>0)
+            ans += a[i];
+        else 
+            ans -= a[i];
+        k--;
+    }
+    cout << ans << endl;
+}
+//-------------------------------------------------------------------
+/** Xếp hàng 
+ * Có tất cả n vị khách. Vị khách thứ i tới làm thủ tục tại thời điểm t[i]
+ * và cần d[i] thời gian để checkin xong.
+ * Xác định thời điểm tất cả vị khách làm xong thủ tục lên máy bay 
+Thời gian vị khách mới đến với thời gian kết thúc của thủ tục trước 
+Sắp xếp theo thời gian đến 
+3
+2 1
+8 3
+5 7
+=> 15
+*/
+void run23(){
+    int n; cin >> n;
+    pair<int, int> a[n];
+    f0(i,n) cin >> a[i].first >> a[i].second;
+    sort(a,a+n);
+    int end_time = a[0].first + a[0].second; //tgian làm xong thủ tục của người 1
+    for(int i=1; i<n; i++){
+        end_time = max(end_time, a[i].first) + a[i].second;
+    }
+    cout << end_time << endl;
+}
+//----------------------------------------------------------------
+/**Cặp phần tử có tổng gần 0 nhất
+ * Tìm cặp phần tử có tổng gần nhất so với 0. Nếu có nhiều cặp cùng tổng
+ * thì lấy cặp đầu tiên xuất hiện  
+Sắp xếp theo trị tuyệt đối để x -x gần nhau luôn 
+2
+3
+-8 -66 -60
+6
+-21 -67 -37 -18 4 -65
+=> -68 -14
+*/
+bool cmpAbsValue(pair<int,int> a, pair<int,int> b){
+    if(abs(a.first) != abs(b.first))
+        return abs(a.first) < abs(b.first);
+    return a.second < b.second;
+}
+void run24(){
+    int n; cin >> n;
+    vector<pair<int, int>> v(n); //lưu giá trị và chỉ số 
+    f0(i,n){
+        int x; cin >> x; 
+        v[i].first = x;
+        v[i].second = i;
+    }
+    sort(v.begin(), v.end(), cmpAbsValue);
+    int index;
+    ll res;//lưu giá trị thực sự 
+    ll sum = INT_MAX;//trị tuyệt đối của tổng 
+    for(int i=1; i<n; i++){
+        int tmp = abs(v[i].first + v[i-1].first);
+        if(tmp < sum){
+            sum = tmp;
+            res = v[i].first + v[i-1].first;//cập nhật kết quả thực sự 
+            index = min(v[i].second, v[i-1].second);//chỉ số nhỏ hơn trong 2 số hiện tại 
+        }else if(tmp == sum){//nhiều cặp cùng tổng 
+            if(index > min(v[i].second, v[i-1].second)){//chỉ số > cặp mới 
+                res = v[i].first + v[i-1].first;
+                index = min(v[i].second, v[i-1].second);
+            }
+        }
+    }
+    cout << res << endl;
+}
+//----------------------------------------------------------------
+/**Số lặp đầu tiên trong mảng 
+2
+5 
+1 2 3 4 5 
+6 
+10 20 30 30 20 5 7 
+=> -1 30
+*/
+void run(){
+    int n; cin >> n;
+    int a[n]; nhap_mang;
+    bool used[1000001];
+    for(int i=0; i<n; i++){
+        if(used[a[i]]){
+            cout << a[i] << endl;
+            return;
+        }
+        used[a[i]] = 1;
+    }
+    cout << "-1" << endl;
 }
 int main() {
     ios_base::sync_with_stdio(0);
