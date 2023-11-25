@@ -365,7 +365,7 @@ void run13(){
 1 2 3 5 9 
 1 2 3
 */
-void run(){
+void run14(){
     int n, m; cin >> n >> m;
     int a[n], b[m];
     f0(i,n) cin >> a[i]; 
@@ -393,6 +393,113 @@ void run(){
     
     for(int x : hop) cout << x << " ";el;
     for(int x : giao) cout << x << " ";el;
+}
+//-------------------------------------------------------------
+/** Sắp xếp lại dãy con
+ * Tìm dãy con liên tục của mảng a[r]...a[l] sao cho khi sắp xếp 
+ * lại dãy con nhận được 1 mảng được sắp xếp.
+Tìm 2 vị trí a[i] > a[i]+1, tìm max trong đoạn l-r
+duyệt từ 0 tới l xem liệu còn ptu > min => vị trí left thực sự 
+         n tới r xem liệu còn ptu < max => vị trí right thực sự 
+10 12 20 30 25 40 5 32 31 35 50 60 
+          l     x x    r  
+
+3
+11
+10 12 20 30 25 40 32 31 35 50 60 
+12
+10 12 20 30 25 40 5 32 31 35 50 60 
+9
+0 1 15 2 6 7 30 40 50
+=> 
+4 9
+1 10
+3 6
+*/
+void run15(){
+    int n; cin >> n;
+    int a[n]; nhap_mang;
+    int l, r;
+    for(int i=0;i<n-1; i++){
+        if(a[i] > a[i+1]){
+            l=i;
+            break;
+        }
+    }
+    for(int i=n-1; i>0; i--){
+        if(a[i] < a[i-1]){
+            r=i;
+            break;
+        }
+    }
+    int min = *min_element(a+l, a+r+1);
+    int max = *max_element(a+l, a+r+1);
+    for(int i=0; i<=l; i++){
+        if(a[i] > min){
+            l = i;
+            break;
+        }
+    }
+    for(int i=n-1; i>=r; i--){
+        if(a[i] < max){
+            r = i;
+            break;
+        }
+    }
+    cout << l + 1 << " " << r + 1 << endl;
+}
+//----------------------------------------------------------------
+/** Sắp xếp chữ số 
+ * Đưa ra mảng đã được sắp xếp bao gồm các chữ số của mỗi ptu trong a 
+ * VD a[] = {110, 111, 112, 113, 114} => {0,1,2,3,4}
+
+2
+3
+131 11 48
+4
+111 222 333 446
+=> 
+1 3 4 8 
+1 2 3 4 6
+*/
+void run16(){
+    int n; cin >> n; cin.ignore();
+    string s; getline(cin, s);
+    int a[10] = {0};
+    for(char x : s) {
+        if(isdigit(x))
+            a[x-'0'] = 1;
+    }
+    for(int i=0; i<10;i++){
+        if(a[i]) 
+            cout << i << " ";
+    }el;
+}
+//-------------------------------------------------
+/** Sắp xếp theo tần xuất 
+2
+5 5 4 6 4
+5
+9 9 9 2 5
+=> 
+*/
+map<int, int> mp;
+bool cmpTx(int a, int b){
+    if(mp[a] != mp[b]) 
+        return mp[a] > mp[b];
+    return a < b;
+}
+void run(){
+    int n; cin >> n; 
+    int a[n];
+    f0(i,n){
+        cin >> a[i];
+        mp[a[i]]++;
+    }
+    sort(a, a+n, cmpTx);
+    f0(i,n) cout << a[i] << " ";
+    el;
+    mp.clear();//các test sau 
 }
 int main() {
     ios_base::sync_with_stdio(0);
