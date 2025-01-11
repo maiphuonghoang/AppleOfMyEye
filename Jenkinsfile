@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the GitHub repository
-                git 'https://github.com/maiphuonghoang/AppleOfMyEye.git'
+                git branch: 'main', url: 'https://github.com/maiphuonghoang/AppleOfMyEye.git'
             }
         }
     }
